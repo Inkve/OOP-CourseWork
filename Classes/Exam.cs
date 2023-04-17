@@ -3,7 +3,7 @@
 namespace CourseWork_With_SQLite.Classes
 {
     /// <summary>
-    /// Класс, для реализации экзамена
+    /// Класс для реализации экзамена
     /// </summary>
     public class Exam
     {
