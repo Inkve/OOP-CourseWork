@@ -38,7 +38,7 @@ namespace CourseWork_With_SQLite.Forms
         private async void updateTable()
         {
             await updateFromDataBase();
-            subjectTable.RowCount = 1;
+            subjectTable.RowCount = 0;
             if (subjects.Count() > 0)
             {
                 subjectTable.RowCount = subjects.Count();
@@ -59,7 +59,7 @@ namespace CourseWork_With_SQLite.Forms
 
         private async void updateVariants(object sender, EventArgs e)
         {
-            await updateFromDataBase();
+            // await updateFromDataBase();
             specialityInput.Items.Clear();
             foreach (Speciality speciality in specialities)
             {
@@ -72,6 +72,11 @@ namespace CourseWork_With_SQLite.Forms
             CourseWorkContext context = new CourseWorkContext();
             specialities = context.Specialities.AsEnumerable();
             subjects = context.Subjects.AsEnumerable();
+        }
+
+        private void selectionChanged(object sender, EventArgs e)
+        {
+            subjectTable.ClearSelection();
         }
     }
 }

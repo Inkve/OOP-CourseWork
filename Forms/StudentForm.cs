@@ -51,7 +51,7 @@ namespace CourseWork_With_SQLite.Forms
 
         private void updateTable()
         {
-            studentTable.RowCount = 1;
+            studentTable.RowCount = 0;
             CourseWorkContext context = new CourseWorkContext();
             students = context.Students.AsEnumerable();
             if (students.Count() > 0)
@@ -82,6 +82,11 @@ namespace CourseWork_With_SQLite.Forms
             {
                 specialityInput.Items.Add(speciality.SpecialityCode);
             }
+        }
+
+        private void selectionChanged(object sender, EventArgs e)
+        {
+            studentTable.ClearSelection();
         }
     }
 }

@@ -3,22 +3,53 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CourseWork_With_SQLite.Context
 {
+    /// <summary>
+    /// Класс для взаимодействия с базой данных
+    /// </summary>
     internal partial class CourseWorkContext : DbContext
     {
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public CourseWorkContext()
         {
             Database.EnsureCreated();
         }
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="options"></param>
         public CourseWorkContext(DbContextOptions<CourseWorkContext> options) : base(options) { }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual DbSet<Faculty> Faculties { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual DbSet<Speciality> Specialities { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual DbSet<Student> Students { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual DbSet<Subject> Subjects { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual DbSet<Exam> Exams { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlite("Data Source=Coursework.db");
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Faculty>(entity =>
@@ -65,6 +96,10 @@ namespace CourseWork_With_SQLite.Context
             });
             OnModelCreatingPartial(modelBuilder);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

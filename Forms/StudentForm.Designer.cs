@@ -108,6 +108,7 @@
             this.studentTable.Size = new System.Drawing.Size(870, 537);
             this.studentTable.TabIndex = 50;
             this.studentTable.TabStop = false;
+            this.studentTable.SelectionChanged += new System.EventHandler(this.selectionChanged);
             // 
             // Id
             // 

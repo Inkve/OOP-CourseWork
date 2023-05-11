@@ -1,6 +1,8 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
 using System.Data;
+using System.Runtime.InteropServices;
+using System.Xml.Linq;
 
 namespace CourseWork_With_SQLite.Forms
 {
@@ -20,17 +22,39 @@ namespace CourseWork_With_SQLite.Forms
             string _facultyName = facultyInput.Text;
             string _specialityCode = specialityCodeInput.Text;
             string _specialityName = specialityNameInput.Text;
-            if (!string.IsNullOrEmpty(_facultyName) && !string.IsNullOrEmpty(_specialityCode) && !string.IsNullOrEmpty(_specialityName)) 
+            try
             {
-                Faculty temp_faculty = (faculties.Where(e => e.Name == _facultyName)).AsEnumerable().First();
-                Speciality temp = new Speciality(_specialityCode, _specialityName, temp_faculty.Id.ToString());
-                temp.AddInDataBase();
-                await updateFromDataBase();
-                facultyInput.Text = "";
-                specialityCodeInput.Text = "";
-                specialityNameInput.Text = "";
+                if (!string.IsNullOrEmpty(_facultyName) && !string.IsNullOrEmpty(_specialityCode) && !string.IsNullOrEmpty(_specialityName))
+                {
+                    if (specialities.FirstOrDefault(e => e.SpecialityCode == _specialityCode) != null)
+                    {
+                        throw new Exception("Специальность с текущим кодом уже существует!");
+                    }
+                    Faculty temp_faculty = (faculties.Where(e => e.Name == _facultyName)).AsEnumerable().First();
+                    Speciality temp = new Speciality(_specialityCode, _specialityName, temp_faculty.Id.ToString());
+                    temp.AddInDataBase();
+                    await updateFromDataBase();
+                    facultyInput.Text = "";
+                    specialityCodeInput.Text = "";
+                    specialityNameInput.Text = "";
+                }
+                else
+                {
+                    throw new Exception("Не все опции заполнены!");
+                }
+            }
+            catch (Exception ex)
+            {
+                [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+                static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
+                MessageBox(IntPtr.Zero, ex.Message, "Ошибка", 0);
             }
             updateTable();
+        }
+
+        private void selectionChanged(object sender, EventArgs e)
+        {
+            specialityTable.ClearSelection();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -76,9 +100,30 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
-        //private void updateFacultyList(object sender, KeyPressEventArgs e)
-        //{
-
-        //}
+        private void specialityTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                SpecialityFormEdit specialityFormEdit = new SpecialityFormEdit(specialityTable.Rows[e.RowIndex].Cells[0].Value.ToString());
+                specialityFormEdit.ShowDialog();
+                updateFromDataBase();
+                updateTable();
+            }
+            if (e.ColumnIndex == 6)
+            {
+                //using (CourseWorkContext context = new CourseWorkContext())
+                //{
+                //    Exam exam = context.Exams.FirstOrDefault(el =>
+                //        el.Id.ToString().ToLower() == examTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                //    if (exam != null)
+                //    {
+                //        context.Exams.Remove(exam);
+                //        context.SaveChanges();
+                //        updateFromDataBase();
+                //        showTable();
+                //    }
+                //}
+            }
+        }
     }
 }

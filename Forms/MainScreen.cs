@@ -29,36 +29,60 @@ namespace CourseWork_With_SQLite.Forms
         {
             FacultyForm facultyForm = new FacultyForm();
             facultyForm.ShowDialog();
+            updateFromDataBase();
+            updateFacultyVariants();
+            updateSpecialityVariants();
+            updateTable();
         }
 
         private void specialitiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SpecialityForm specialityForm = new SpecialityForm();
             specialityForm.ShowDialog();
+            updateFromDataBase();
+            updateFacultyVariants();
+            updateSpecialityVariants();
+            updateTable();
         }
 
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StudentForm studentForm = new StudentForm();
             studentForm.ShowDialog();
+            updateFromDataBase();
+            updateFacultyVariants();
+            updateSpecialityVariants();
+            updateTable();
         }
 
         private void subjectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubjectsForm subjectForm = new SubjectsForm();
             subjectForm.ShowDialog();
+            updateFromDataBase();
+            updateFacultyVariants();
+            updateSpecialityVariants();
+            updateTable();
         }
 
         private void examensToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExamenForm examenForm = new ExamenForm();
             examenForm.ShowDialog();
+            updateFromDataBase();
+            updateFacultyVariants();
+            updateSpecialityVariants();
+            updateTable();
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.ShowDialog();
+            updateFromDataBase();
+            updateFacultyVariants();
+            updateSpecialityVariants();
+            updateTable();
         }
 
         private async Task updateFromDataBase()
@@ -156,7 +180,7 @@ namespace CourseWork_With_SQLite.Forms
             }
             else
             {
-                facultiesIdForTable.Add(faculties.Where(e => e.Name == FacultyDecesion).First().Id.ToString());
+                facultiesIdForTable.Add(faculties.FirstOrDefault(e => e.Name == FacultyDecesion).Id.ToString());
                 try
                 {
                     tempSpecialities = specialities.Where(e => e.FacultyId == facultiesIdForTable[0]).ToList();
@@ -178,7 +202,7 @@ namespace CourseWork_With_SQLite.Forms
             }
             else
             {
-                specialitiesIdForTable.Add(tempSpecialities.Where(e => e.SpecialityCode == SpecialityDecesion).First().SpecialityCode.ToString());
+                specialitiesIdForTable.Add(tempSpecialities.FirstOrDefault(e => e.SpecialityCode == SpecialityDecesion).SpecialityCode.ToString());
                 if (specialitiesIdForTable.Count == 0)
                 {
                     throw new Exception("Выбор текущего факультета и специальности недопустим!");
@@ -189,7 +213,11 @@ namespace CourseWork_With_SQLite.Forms
             foreach (string specialityCode in specialitiesIdForTable) 
             {
                 tempStudents.AddRange(students.Where(e => e.SpecialityCode == specialityCode).ToList());
-                specialityCodeToFacultyName.Add(specialityCode, faculties.Where(c => c.Id.ToString() == specialities.Where(e => e.SpecialityCode == specialityCode).First().FacultyId).First().Name);
+                var facultyName = faculties.FirstOrDefault(c =>
+                    c.Id.ToString() == specialities.FirstOrDefault(e
+                        => e.SpecialityCode == specialityCode).FacultyId).Name;
+                if (facultyName != null)
+                    specialityCodeToFacultyName.Add(specialityCode, facultyName);
             }
 
             List<Exam> tempExams = new List<Exam>(); 
@@ -238,7 +266,7 @@ namespace CourseWork_With_SQLite.Forms
                 examTable.Rows[counter].Cells[2].Value = student.SpecialityCode;
                 examTable.Rows[counter].Cells[3].Value = student.ToString();
                 examTable.Rows[counter].Cells[4].Value = exam.Semester;
-                examTable.Rows[counter].Cells[5].Value = subjects.Where(e => e.Id.ToString() == exam.IdSubject).First().ToString();
+                examTable.Rows[counter].Cells[5].Value = subjects.FirstOrDefault(e => e.Id.ToString() == exam.IdSubject).ToString();
                 examTable.Rows[counter].Cells[6].Value = exam.Score;
                 counter++;
             }
@@ -254,6 +282,11 @@ namespace CourseWork_With_SQLite.Forms
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void selectionChanged(object sender, EventArgs e)
+        {
+            examTable.ClearSelection();
         }
 
         private void updateSemesterInputAfterFacultiesInput(object sender, EventArgs e)

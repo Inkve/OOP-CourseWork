@@ -30,6 +30,13 @@
         {
             this.showAllGroupBox = new System.Windows.Forms.GroupBox();
             this.specialityTable = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Faculty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SpecialityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SpecialityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addGroupBox = new System.Windows.Forms.GroupBox();
             this.specialityNameInput = new System.Windows.Forms.TextBox();
             this.specialityCodeInput = new System.Windows.Forms.TextBox();
@@ -39,13 +46,6 @@
             this.specialityCodeLabel = new System.Windows.Forms.Label();
             this.facultyLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Faculty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SpecialityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SpecialityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Edit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.showAllGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.specialityTable)).BeginInit();
             this.addGroupBox.SuspendLayout();
@@ -74,7 +74,9 @@
             this.specialityTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.specialityTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.specialityTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.specialityTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.specialityTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.specialityTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.specialityTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -99,103 +101,8 @@
             this.specialityTable.Size = new System.Drawing.Size(870, 285);
             this.specialityTable.TabIndex = 50;
             this.specialityTable.TabStop = false;
-            // 
-            // addGroupBox
-            // 
-            this.addGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addGroupBox.Controls.Add(this.specialityNameInput);
-            this.addGroupBox.Controls.Add(this.specialityCodeInput);
-            this.addGroupBox.Controls.Add(this.facultyInput);
-            this.addGroupBox.Controls.Add(this.addButton);
-            this.addGroupBox.Controls.Add(this.specialityNameLabel);
-            this.addGroupBox.Controls.Add(this.specialityCodeLabel);
-            this.addGroupBox.Controls.Add(this.facultyLabel);
-            this.addGroupBox.Location = new System.Drawing.Point(904, 13);
-            this.addGroupBox.Name = "addGroupBox";
-            this.addGroupBox.Size = new System.Drawing.Size(258, 255);
-            this.addGroupBox.TabIndex = 1;
-            this.addGroupBox.TabStop = false;
-            this.addGroupBox.Text = "Добавление специальности";
-            // 
-            // specialityNameInput
-            // 
-            this.specialityNameInput.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.specialityNameInput.Location = new System.Drawing.Point(6, 165);
-            this.specialityNameInput.Name = "specialityNameInput";
-            this.specialityNameInput.Size = new System.Drawing.Size(246, 29);
-            this.specialityNameInput.TabIndex = 2;
-            // 
-            // specialityCodeInput
-            // 
-            this.specialityCodeInput.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.specialityCodeInput.Location = new System.Drawing.Point(6, 108);
-            this.specialityCodeInput.Name = "specialityCodeInput";
-            this.specialityCodeInput.Size = new System.Drawing.Size(246, 29);
-            this.specialityCodeInput.TabIndex = 1;
-            // 
-            // facultyInput
-            // 
-            this.facultyInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.facultyInput.FormattingEnabled = true;
-            this.facultyInput.Location = new System.Drawing.Point(6, 50);
-            this.facultyInput.Name = "facultyInput";
-            this.facultyInput.Size = new System.Drawing.Size(246, 30);
-            this.facultyInput.TabIndex = 0;
-            this.facultyInput.Click += new System.EventHandler(this.updateFacultyList);
-            this.facultyInput.Enter += new System.EventHandler(this.updateFacultyList);
-            // 
-            // addButton
-            // 
-            this.addButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.addButton.Location = new System.Drawing.Point(72, 210);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(120, 33);
-            this.addButton.TabIndex = 3;
-            this.addButton.Text = "Добавить";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
-            // 
-            // specialityNameLabel
-            // 
-            this.specialityNameLabel.AutoSize = true;
-            this.specialityNameLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.specialityNameLabel.Location = new System.Drawing.Point(21, 140);
-            this.specialityNameLabel.Name = "specialityNameLabel";
-            this.specialityNameLabel.Size = new System.Drawing.Size(227, 22);
-            this.specialityNameLabel.TabIndex = 2;
-            this.specialityNameLabel.Text = "Название специальности";
-            // 
-            // specialityCodeLabel
-            // 
-            this.specialityCodeLabel.AutoSize = true;
-            this.specialityCodeLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.specialityCodeLabel.Location = new System.Drawing.Point(21, 83);
-            this.specialityCodeLabel.Name = "specialityCodeLabel";
-            this.specialityCodeLabel.Size = new System.Drawing.Size(176, 22);
-            this.specialityCodeLabel.TabIndex = 1;
-            this.specialityCodeLabel.Text = "Код специальности";
-            // 
-            // facultyLabel
-            // 
-            this.facultyLabel.AutoSize = true;
-            this.facultyLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.facultyLabel.Location = new System.Drawing.Point(21, 25);
-            this.facultyLabel.Name = "facultyLabel";
-            this.facultyLabel.Size = new System.Drawing.Size(100, 22);
-            this.facultyLabel.TabIndex = 0;
-            this.facultyLabel.Text = "Факультет";
-            // 
-            // exitButton
-            // 
-            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.exitButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.exitButton.Location = new System.Drawing.Point(1042, 299);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(120, 33);
-            this.exitButton.TabIndex = 4;
-            this.exitButton.Text = "Выход";
-            this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.specialityTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.specialityTable_CellContentClick);
+            this.specialityTable.SelectionChanged += new System.EventHandler(this.selectionChanged);
             // 
             // Id
             // 
@@ -250,10 +157,114 @@
             this.Delete.ReadOnly = true;
             this.Delete.Width = 33;
             // 
+            // addGroupBox
+            // 
+            this.addGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addGroupBox.Controls.Add(this.specialityNameInput);
+            this.addGroupBox.Controls.Add(this.specialityCodeInput);
+            this.addGroupBox.Controls.Add(this.facultyInput);
+            this.addGroupBox.Controls.Add(this.addButton);
+            this.addGroupBox.Controls.Add(this.specialityNameLabel);
+            this.addGroupBox.Controls.Add(this.specialityCodeLabel);
+            this.addGroupBox.Controls.Add(this.facultyLabel);
+            this.addGroupBox.Location = new System.Drawing.Point(904, 13);
+            this.addGroupBox.Name = "addGroupBox";
+            this.addGroupBox.Size = new System.Drawing.Size(258, 255);
+            this.addGroupBox.TabIndex = 1;
+            this.addGroupBox.TabStop = false;
+            this.addGroupBox.Text = "Добавление специальности";
+            // 
+            // specialityNameInput
+            // 
+            this.specialityNameInput.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.specialityNameInput.Location = new System.Drawing.Point(6, 165);
+            this.specialityNameInput.Name = "specialityNameInput";
+            this.specialityNameInput.Size = new System.Drawing.Size(246, 29);
+            this.specialityNameInput.TabIndex = 2;
+            // 
+            // specialityCodeInput
+            // 
+            this.specialityCodeInput.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.specialityCodeInput.Location = new System.Drawing.Point(6, 108);
+            this.specialityCodeInput.Name = "specialityCodeInput";
+            this.specialityCodeInput.Size = new System.Drawing.Size(246, 29);
+            this.specialityCodeInput.TabIndex = 1;
+            // 
+            // facultyInput
+            // 
+            this.facultyInput.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.facultyInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.facultyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.facultyInput.FormattingEnabled = true;
+            this.facultyInput.Location = new System.Drawing.Point(6, 50);
+            this.facultyInput.Name = "facultyInput";
+            this.facultyInput.Size = new System.Drawing.Size(246, 30);
+            this.facultyInput.TabIndex = 0;
+            this.facultyInput.Click += new System.EventHandler(this.updateFacultyList);
+            this.facultyInput.Enter += new System.EventHandler(this.updateFacultyList);
+            // 
+            // addButton
+            // 
+            this.addButton.BackColor = System.Drawing.Color.Beige;
+            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.addButton.Location = new System.Drawing.Point(72, 210);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(120, 33);
+            this.addButton.TabIndex = 3;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // specialityNameLabel
+            // 
+            this.specialityNameLabel.AutoSize = true;
+            this.specialityNameLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.specialityNameLabel.Location = new System.Drawing.Point(21, 140);
+            this.specialityNameLabel.Name = "specialityNameLabel";
+            this.specialityNameLabel.Size = new System.Drawing.Size(227, 22);
+            this.specialityNameLabel.TabIndex = 2;
+            this.specialityNameLabel.Text = "Название специальности";
+            // 
+            // specialityCodeLabel
+            // 
+            this.specialityCodeLabel.AutoSize = true;
+            this.specialityCodeLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.specialityCodeLabel.Location = new System.Drawing.Point(21, 83);
+            this.specialityCodeLabel.Name = "specialityCodeLabel";
+            this.specialityCodeLabel.Size = new System.Drawing.Size(176, 22);
+            this.specialityCodeLabel.TabIndex = 1;
+            this.specialityCodeLabel.Text = "Код специальности";
+            // 
+            // facultyLabel
+            // 
+            this.facultyLabel.AutoSize = true;
+            this.facultyLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.facultyLabel.Location = new System.Drawing.Point(21, 25);
+            this.facultyLabel.Name = "facultyLabel";
+            this.facultyLabel.Size = new System.Drawing.Size(100, 22);
+            this.facultyLabel.TabIndex = 0;
+            this.facultyLabel.Text = "Факультет";
+            // 
+            // exitButton
+            // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.BackColor = System.Drawing.Color.Beige;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.exitButton.Location = new System.Drawing.Point(1042, 299);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(120, 33);
+            this.exitButton.TabIndex = 4;
+            this.exitButton.Text = "Выход";
+            this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // SpecialityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1174, 344);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.addGroupBox);

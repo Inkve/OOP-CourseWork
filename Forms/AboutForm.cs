@@ -11,6 +11,7 @@
         public AboutForm()
         {
             InitializeComponent();
+            CloseFormAsync();
         }
 
         /// <summary>
@@ -20,6 +21,17 @@
         /// <param name="e">Объект, с дополнительной информацией</param>
         private void okButton_Click(object sender, EventArgs e)
         {
+            Close();
+        }
+
+        private async void CloseFormAsync()
+        {
+           // await Task.Run(() => CloseForm());
+        }
+
+        private void CloseForm()
+        { 
+            Thread.Sleep(5000);
             Close();
         }
     }

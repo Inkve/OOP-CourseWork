@@ -26,14 +26,14 @@ namespace CourseWork_With_SQLite.Classes
         public string Name { get; set; }
         /// <summary>
         /// Приведене объекта к строке
-        /// </summary>
+        /// </summary>  
         /// <returns>Название факультета</returns>
         public override string ToString()
         {
             return Name;
         }
         /// <summary>
-        /// Добавление объекта в базу данных
+        /// Добавление объекта в базу данных    
         /// </summary>
         public void AddInDataBase()
         {

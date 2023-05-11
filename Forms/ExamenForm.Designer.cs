@@ -272,6 +272,7 @@
             this.examTable.Size = new System.Drawing.Size(971, 467);
             this.examTable.TabIndex = 50;
             this.examTable.TabStop = false;
+            this.examTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.examTable_CellContentClick);
             this.examTable.SelectionChanged += new System.EventHandler(this.selectionChanged);
             // 
             // id

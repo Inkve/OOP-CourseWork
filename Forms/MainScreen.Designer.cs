@@ -48,7 +48,6 @@
             this.semesterInput = new System.Windows.Forms.ComboBox();
             this.showGroupBox = new System.Windows.Forms.GroupBox();
             this.examTable = new System.Windows.Forms.DataGridView();
-            this.exitButton = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Faculty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Speciality = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +55,7 @@
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.exitButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.filtersGroupBox.SuspendLayout();
             this.showGroupBox.SuspendLayout();
@@ -64,6 +64,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.добавлениеToolStripMenuItem,
@@ -155,24 +156,28 @@
             // 
             // applyButton
             // 
+            this.applyButton.BackColor = System.Drawing.Color.Beige;
+            this.applyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.applyButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.applyButton.Location = new System.Drawing.Point(142, 213);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(120, 32);
             this.applyButton.TabIndex = 4;
             this.applyButton.Text = "Применить";
-            this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.UseVisualStyleBackColor = false;
             this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
             // 
             // clearFilterButton
             // 
+            this.clearFilterButton.BackColor = System.Drawing.Color.Beige;
+            this.clearFilterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearFilterButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.clearFilterButton.Location = new System.Drawing.Point(9, 213);
             this.clearFilterButton.Name = "clearFilterButton";
             this.clearFilterButton.Size = new System.Drawing.Size(120, 32);
             this.clearFilterButton.TabIndex = 3;
             this.clearFilterButton.Text = "Очистить";
-            this.clearFilterButton.UseVisualStyleBackColor = true;
+            this.clearFilterButton.UseVisualStyleBackColor = false;
             this.clearFilterButton.Click += new System.EventHandler(this.clearFilterButton_Click);
             // 
             // specialityLabel
@@ -207,7 +212,9 @@
             // 
             // specialityInput
             // 
+            this.specialityInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.specialityInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.specialityInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.specialityInput.FormattingEnabled = true;
             this.specialityInput.Location = new System.Drawing.Point(9, 166);
             this.specialityInput.Name = "specialityInput";
@@ -216,7 +223,9 @@
             // 
             // facultyInput
             // 
+            this.facultyInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.facultyInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.facultyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.facultyInput.FormattingEnabled = true;
             this.facultyInput.Location = new System.Drawing.Point(9, 108);
             this.facultyInput.Name = "facultyInput";
@@ -226,7 +235,9 @@
             // 
             // semesterInput
             // 
+            this.semesterInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.semesterInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.semesterInput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.semesterInput.FormattingEnabled = true;
             this.semesterInput.Location = new System.Drawing.Point(9, 50);
             this.semesterInput.Name = "semesterInput";
@@ -255,8 +266,10 @@
             this.examTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.examTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.examTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.examTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.examTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.examTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
+            this.examTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.examTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.examTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -266,6 +279,7 @@
             this.Semester,
             this.Subject,
             this.Score});
+            this.examTable.GridColor = System.Drawing.Color.Yellow;
             this.examTable.Location = new System.Drawing.Point(6, 25);
             this.examTable.MultiSelect = false;
             this.examTable.Name = "examTable";
@@ -279,18 +293,7 @@
             this.examTable.Size = new System.Drawing.Size(972, 274);
             this.examTable.TabIndex = 50;
             this.examTable.TabStop = false;
-            // 
-            // exitButton
-            // 
-            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.exitButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.exitButton.Location = new System.Drawing.Point(1138, 301);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(120, 32);
-            this.exitButton.TabIndex = 5;
-            this.exitButton.Text = "Выход";
-            this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.examTable.SelectionChanged += new System.EventHandler(this.selectionChanged);
             // 
             // id
             // 
@@ -344,10 +347,25 @@
             this.Score.ReadOnly = true;
             this.Score.Width = 70;
             // 
+            // exitButton
+            // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.BackColor = System.Drawing.Color.Beige;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.exitButton.Location = new System.Drawing.Point(1138, 301);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(120, 32);
+            this.exitButton.TabIndex = 5;
+            this.exitButton.Text = "Выход";
+            this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1270, 340);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.showGroupBox);
@@ -358,7 +376,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1090, 379);
             this.Name = "MainScreen";
-            this.Text = "Успеваемость студентов -  КР 21ВП2 Левин А. А.";
+            this.Text = "Успеваемость студентов -  КП 21ВП2 Левин А. А.";
             this.Enter += new System.EventHandler(this.updateVariants);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

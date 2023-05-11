@@ -1,5 +1,6 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
+using Microsoft.EntityFrameworkCore.Query;
 using System.Runtime.InteropServices;
 
 namespace CourseWork_With_SQLite.Forms
@@ -12,12 +13,12 @@ namespace CourseWork_With_SQLite.Forms
         private IEnumerable<Exam> exams;
         public ExamenForm()
         {
-            updateFromBataBase();
+            updateFromDataBase();
             InitializeComponent();
             updateSemesterOption();
             updateSpecialityOption();
             studentInput.Enabled = false;
-
+            scoreInput.Enabled = false;
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace CourseWork_With_SQLite.Forms
             Close();
         }
 
-        private async Task updateFromBataBase()
+        private async Task updateFromDataBase()
         {
             CourseWorkContext context = new CourseWorkContext();
             specialities = context.Specialities.AsEnumerable();
@@ -95,6 +96,7 @@ namespace CourseWork_With_SQLite.Forms
             if (!string.IsNullOrEmpty(specialityDecision) && !string.IsNullOrEmpty(subjectDecision) && !(semesterDecision == 0))
             {
                 studentInput.Enabled = true;
+                scoreInput.Enabled = true;
                 string specialityCode = specialities.Where(c => c.SpecialityCode == specialityDecision).First().SpecialityCode.ToString();
                 List<Student> studentsForOption = new List<Student>();
                 studentsForOption = students.Where(e => e.SpecialityCode == specialityCode).ToList();
@@ -107,6 +109,7 @@ namespace CourseWork_With_SQLite.Forms
             else
             {
                 studentInput.Enabled = false;
+                scoreInput.Enabled = false;
             }
         }
 
@@ -181,9 +184,14 @@ namespace CourseWork_With_SQLite.Forms
                         int.TryParse(scoreInput.Text.Split()[0], out int scoreDecision);
                         string specialityCode = specialities.Where(c => c.SpecialityCode == specialityDecision).First().SpecialityCode.ToString();
                         string studentId = students.Where(e => e.SpecialityCode == specialityCode && e.ToString() == studentInput.Text).First().Id.ToString();
+                        if (exams.FirstOrDefault(e => 
+                            e.IdStudent == studentId && e.IdSubject == subjectId && e.Semester == semesterDecision) != null)
+                        {
+                            throw new Exception("Результаты этого студента были добавлены раннее!");
+                        }
                         Exam temp = new Exam(studentId, subjectId, semesterDecision, scoreDecision);
                         temp.AddInDataBase();
-                        await updateFromBataBase();
+                        await updateFromDataBase();
                         showTable();
                     }
                     catch (Exception ex)
@@ -208,6 +216,31 @@ namespace CourseWork_With_SQLite.Forms
         {
             examTable.ClearSelection();
         }
-    }
 
+        private void examTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5) 
+            {
+                ExamenEditForm examenEditForm = new ExamenEditForm(examTable.Rows[e.RowIndex].Cells[0].Value.ToString());
+                examenEditForm.ShowDialog();
+                updateFromDataBase();
+                showTable();
+            }
+            if (e.ColumnIndex == 6)
+            {
+                using (CourseWorkContext context = new CourseWorkContext())
+                {
+                    Exam exam = context.Exams.FirstOrDefault(el => 
+                        el.Id.ToString().ToLower() == examTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                    if (exam != null)
+                    {
+                        context.Exams.Remove(exam);
+                        context.SaveChanges();
+                        updateFromDataBase();
+                        showTable();
+                    }
+                }
+            }
+        }
+    }
 }
