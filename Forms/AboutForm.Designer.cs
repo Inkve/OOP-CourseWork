@@ -38,6 +38,8 @@
             // 
             // okButton
             // 
+            this.okButton.BackColor = System.Drawing.Color.Beige;
+            this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.okButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.okButton.Location = new System.Drawing.Point(187, 160);
             this.okButton.Margin = new System.Windows.Forms.Padding(4);
@@ -45,7 +47,7 @@
             this.okButton.Size = new System.Drawing.Size(96, 34);
             this.okButton.TabIndex = 0;
             this.okButton.Text = "ОК";
-            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.UseVisualStyleBackColor = false;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // label1
@@ -97,6 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(443, 207);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);

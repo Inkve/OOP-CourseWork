@@ -54,6 +54,7 @@
             // 
             // saveButton
             // 
+            this.saveButton.BackColor = System.Drawing.Color.Beige;
             this.saveButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveButton.Location = new System.Drawing.Point(13, 252);
             this.saveButton.Margin = new System.Windows.Forms.Padding(4);
@@ -61,12 +62,13 @@
             this.saveButton.Size = new System.Drawing.Size(140, 45);
             this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Сохранить";
-            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // exitButton
             // 
             this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.BackColor = System.Drawing.Color.Beige;
             this.exitButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.exitButton.Location = new System.Drawing.Point(171, 252);
             this.exitButton.Margin = new System.Windows.Forms.Padding(4);
@@ -74,12 +76,13 @@
             this.exitButton.Size = new System.Drawing.Size(140, 45);
             this.exitButton.TabIndex = 10;
             this.exitButton.Text = "Выход";
-            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // scoreInput
             // 
-            this.scoreInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.scoreInput.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.scoreInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.scoreInput.Location = new System.Drawing.Point(8, 215);
             this.scoreInput.Margin = new System.Windows.Forms.Padding(4);
             this.scoreInput.Maximum = new decimal(new int[] {
@@ -93,7 +96,7 @@
             0,
             0});
             this.scoreInput.Name = "scoreInput";
-            this.scoreInput.Size = new System.Drawing.Size(311, 29);
+            this.scoreInput.Size = new System.Drawing.Size(311, 25);
             this.scoreInput.TabIndex = 5;
             this.scoreInput.Value = new decimal(new int[] {
             5,
@@ -103,8 +106,10 @@
             // 
             // studentInput
             // 
+            this.studentInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.studentInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.studentInput.Enabled = false;
+            this.studentInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.studentInput.FormattingEnabled = true;
             this.studentInput.Location = new System.Drawing.Point(8, 155);
             this.studentInput.Margin = new System.Windows.Forms.Padding(4);
@@ -136,8 +141,10 @@
             // 
             // semesterInput
             // 
+            this.semesterInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.semesterInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.semesterInput.Enabled = false;
+            this.semesterInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.semesterInput.FormattingEnabled = true;
             this.semesterInput.Location = new System.Drawing.Point(8, 95);
             this.semesterInput.Margin = new System.Windows.Forms.Padding(4);
@@ -147,8 +154,10 @@
             // 
             // subjectInput
             // 
+            this.subjectInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.subjectInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subjectInput.Enabled = false;
+            this.subjectInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.subjectInput.FormattingEnabled = true;
             this.subjectInput.Location = new System.Drawing.Point(8, 35);
             this.subjectInput.Margin = new System.Windows.Forms.Padding(4);
@@ -182,6 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(327, 308);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.scoreInput);

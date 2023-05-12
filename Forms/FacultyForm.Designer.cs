@@ -92,7 +92,7 @@
             this.facultyTable.Size = new System.Drawing.Size(708, 162);
             this.facultyTable.TabIndex = 50;
             this.facultyTable.TabStop = false;
-            this.facultyTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.facultyDataGridView_CellContentClick);
+            this.facultyTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.facultyTable_CellContentClick);
             this.facultyTable.SelectionChanged += new System.EventHandler(this.selectionChanged);
             // 
             // ID

@@ -111,18 +111,39 @@ namespace CourseWork_With_SQLite.Forms
             }
             if (e.ColumnIndex == 6)
             {
-                //using (CourseWorkContext context = new CourseWorkContext())
-                //{
-                //    Exam exam = context.Exams.FirstOrDefault(el =>
-                //        el.Id.ToString().ToLower() == examTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
-                //    if (exam != null)
-                //    {
-                //        context.Exams.Remove(exam);
-                //        context.SaveChanges();
-                //        updateFromDataBase();
-                //        showTable();
-                //    }
-                //}
+                using (CourseWorkContext context = new CourseWorkContext())
+                {
+                    Speciality speciality = context.Specialities.FirstOrDefault(el => el.Id.ToString().ToLower() == specialityTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                    if (speciality != null)
+                    {
+                        String specialityId = speciality.Id.ToString();
+                        String specialityCode = speciality.SpecialityCode;
+                        context.Specialities.Remove(speciality);
+                        context.SaveChanges();
+                        List<String> studentsId = new List<String>();
+                        foreach (Student student in context.Students.Where(e => e.SpecialityCode == specialityCode).ToList())
+                        {
+                            studentsId.Add(student.Id.ToString());
+                            context.Students.Remove(student);
+                            context.SaveChanges();
+                        }
+                        foreach (Subject subject in context.Subjects.Where(e => e.SpecialityID == specialityId).ToList())
+                        {
+                            context.Subjects.Remove(subject);
+                            context.SaveChanges();
+                        }
+                        foreach (string studentId in studentsId)
+                        {
+                            foreach (Exam exam in context.Exams.Where(e => e.IdStudent == studentId).ToList())
+                            {
+                                context.Exams.Remove(exam);
+                                context.SaveChanges();
+                            }
+                        }
+                    }
+                    updateFromDataBase();
+                    updateTable();
+                }
             }
         }
     }

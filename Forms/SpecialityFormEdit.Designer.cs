@@ -41,20 +41,22 @@
             // specialityNameInput
             // 
             this.specialityNameInput.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.specialityNameInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.specialityNameInput.Location = new System.Drawing.Point(19, 219);
-            this.specialityNameInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.specialityNameInput.Margin = new System.Windows.Forms.Padding(4);
             this.specialityNameInput.Name = "specialityNameInput";
-            this.specialityNameInput.Size = new System.Drawing.Size(418, 29);
+            this.specialityNameInput.Size = new System.Drawing.Size(418, 22);
             this.specialityNameInput.TabIndex = 8;
             // 
             // specialityCodeInput
             // 
             this.specialityCodeInput.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.specialityCodeInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.specialityCodeInput.Location = new System.Drawing.Point(19, 135);
-            this.specialityCodeInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.specialityCodeInput.Margin = new System.Windows.Forms.Padding(4);
             this.specialityCodeInput.Name = "specialityCodeInput";
             this.specialityCodeInput.ReadOnly = true;
-            this.specialityCodeInput.Size = new System.Drawing.Size(418, 29);
+            this.specialityCodeInput.Size = new System.Drawing.Size(418, 22);
             this.specialityCodeInput.TabIndex = 6;
             // 
             // facultyInput
@@ -65,7 +67,7 @@
             this.facultyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.facultyInput.FormattingEnabled = true;
             this.facultyInput.Location = new System.Drawing.Point(19, 50);
-            this.facultyInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.facultyInput.Margin = new System.Windows.Forms.Padding(4);
             this.facultyInput.Name = "facultyInput";
             this.facultyInput.Size = new System.Drawing.Size(418, 30);
             this.facultyInput.TabIndex = 4;
@@ -76,7 +78,7 @@
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveButton.Location = new System.Drawing.Point(19, 280);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(154, 48);
             this.saveButton.TabIndex = 10;
@@ -123,7 +125,7 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.closeButton.Location = new System.Drawing.Point(284, 280);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(4);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(154, 48);
             this.closeButton.TabIndex = 11;
@@ -146,7 +148,7 @@
             this.Controls.Add(this.specialityCodeLabel);
             this.Controls.Add(this.facultyLabel);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(470, 385);
             this.MinimizeBox = false;

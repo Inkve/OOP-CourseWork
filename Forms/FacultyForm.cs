@@ -77,7 +77,7 @@ namespace CourseWork_With_SQLite
             facultyTable.ClearSelection();
         }
 
-        private void facultyDataGridView_CellContentClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void facultyTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 3)
             {
@@ -101,7 +101,8 @@ namespace CourseWork_With_SQLite
                         updateTable();
                         List<String> specialitiesId = new List<String>();
                         List<String> specialitiesCodes = new List<String>();
-                        foreach (Speciality speciality in context.Specialities.Where(e => e.FacultyId == facultyId).ToList()) {
+                        foreach (Speciality speciality in context.Specialities.Where(e => e.FacultyId == facultyId).ToList())
+                        {
                             specialitiesId.Add(speciality.Id.ToString());
                             specialitiesCodes.Add(speciality.SpecialityCode);
                             context.Specialities.Remove(speciality);
@@ -117,7 +118,7 @@ namespace CourseWork_With_SQLite
                                 context.SaveChanges();
                             }
                         }
-                        foreach (string specialityID in specialitiesId) 
+                        foreach (string specialityID in specialitiesId)
                         {
                             foreach (Subject subject in context.Subjects.Where(e => e.SpecialityID == specialityID).ToList())
                             {
