@@ -70,8 +70,9 @@
             this.subjectTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.subjectTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.subjectTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.subjectTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.subjectTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.subjectTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.subjectTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.subjectTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -157,18 +158,20 @@
             // 
             // addButton
             // 
+            this.addButton.BackColor = System.Drawing.Color.Beige;
+            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addButton.Location = new System.Drawing.Point(64, 154);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(104, 35);
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Добавить";
-            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // nameInput
             // 
-            this.nameInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.nameInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.nameInput.Location = new System.Drawing.Point(6, 108);
             this.nameInput.Name = "nameInput";
             this.nameInput.Size = new System.Drawing.Size(221, 29);
@@ -186,7 +189,9 @@
             // 
             // specialityInput
             // 
+            this.specialityInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.specialityInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.specialityInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.specialityInput.FormattingEnabled = true;
             this.specialityInput.Location = new System.Drawing.Point(6, 50);
             this.specialityInput.Name = "specialityInput";
@@ -208,19 +213,22 @@
             // exitButton
             // 
             this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.BackColor = System.Drawing.Color.Beige;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.exitButton.Location = new System.Drawing.Point(1149, 261);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(104, 35);
             this.exitButton.TabIndex = 3;
             this.exitButton.Text = "Выход";
-            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // SubjectsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1265, 308);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.addSubjectGroupBox);

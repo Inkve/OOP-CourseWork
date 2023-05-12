@@ -86,8 +86,9 @@
             this.studentTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.studentTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.studentTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.studentTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.studentTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.studentTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.studentTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.studentTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -193,18 +194,20 @@
             // 
             // addButton
             // 
+            this.addButton.BackColor = System.Drawing.Color.Beige;
+            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addButton.Location = new System.Drawing.Point(66, 471);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(117, 35);
             this.addButton.TabIndex = 9;
             this.addButton.Text = "Добавить";
-            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // groupInput
             // 
-            this.groupInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupInput.Location = new System.Drawing.Point(7, 429);
             this.groupInput.Name = "groupInput";
             this.groupInput.Size = new System.Drawing.Size(227, 29);
@@ -220,7 +223,7 @@
             // 
             // semesterInput
             // 
-            this.semesterInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.semesterInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.semesterInput.Location = new System.Drawing.Point(8, 314);
             this.semesterInput.Maximum = new decimal(new int[] {
             12,
@@ -253,7 +256,7 @@
             // 
             // patronymicInput
             // 
-            this.patronymicInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.patronymicInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.patronymicInput.Location = new System.Drawing.Point(7, 165);
             this.patronymicInput.Name = "patronymicInput";
             this.patronymicInput.Size = new System.Drawing.Size(227, 29);
@@ -261,7 +264,7 @@
             // 
             // nameInput
             // 
-            this.nameInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.nameInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.nameInput.Location = new System.Drawing.Point(7, 108);
             this.nameInput.Name = "nameInput";
             this.nameInput.Size = new System.Drawing.Size(227, 29);
@@ -269,7 +272,7 @@
             // 
             // surnameInput
             // 
-            this.surnameInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.surnameInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.surnameInput.Location = new System.Drawing.Point(7, 51);
             this.surnameInput.Name = "surnameInput";
             this.surnameInput.Size = new System.Drawing.Size(227, 29);
@@ -277,7 +280,9 @@
             // 
             // specialityInput
             // 
+            this.specialityInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.specialityInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.specialityInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.specialityInput.FormattingEnabled = true;
             this.specialityInput.Location = new System.Drawing.Point(8, 371);
             this.specialityInput.Name = "specialityInput";
@@ -370,19 +375,22 @@
             // exitButton
             // 
             this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.BackColor = System.Drawing.Color.Beige;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.exitButton.Location = new System.Drawing.Point(1028, 548);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(117, 36);
             this.exitButton.TabIndex = 10;
             this.exitButton.Text = "Выход";
-            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1157, 596);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.addStudentsGroupBox);

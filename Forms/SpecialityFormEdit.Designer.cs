@@ -41,22 +41,20 @@
             // specialityNameInput
             // 
             this.specialityNameInput.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.specialityNameInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.specialityNameInput.Location = new System.Drawing.Point(19, 219);
+            this.specialityNameInput.Location = new System.Drawing.Point(13, 150);
             this.specialityNameInput.Margin = new System.Windows.Forms.Padding(4);
             this.specialityNameInput.Name = "specialityNameInput";
-            this.specialityNameInput.Size = new System.Drawing.Size(418, 22);
+            this.specialityNameInput.Size = new System.Drawing.Size(418, 29);
             this.specialityNameInput.TabIndex = 8;
             // 
             // specialityCodeInput
             // 
             this.specialityCodeInput.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.specialityCodeInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.specialityCodeInput.Location = new System.Drawing.Point(19, 135);
+            this.specialityCodeInput.Location = new System.Drawing.Point(13, 91);
             this.specialityCodeInput.Margin = new System.Windows.Forms.Padding(4);
             this.specialityCodeInput.Name = "specialityCodeInput";
             this.specialityCodeInput.ReadOnly = true;
-            this.specialityCodeInput.Size = new System.Drawing.Size(418, 22);
+            this.specialityCodeInput.Size = new System.Drawing.Size(418, 29);
             this.specialityCodeInput.TabIndex = 6;
             // 
             // facultyInput
@@ -66,7 +64,7 @@
             this.facultyInput.Enabled = false;
             this.facultyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.facultyInput.FormattingEnabled = true;
-            this.facultyInput.Location = new System.Drawing.Point(19, 50);
+            this.facultyInput.Location = new System.Drawing.Point(13, 31);
             this.facultyInput.Margin = new System.Windows.Forms.Padding(4);
             this.facultyInput.Name = "facultyInput";
             this.facultyInput.Size = new System.Drawing.Size(418, 30);
@@ -77,7 +75,7 @@
             this.saveButton.BackColor = System.Drawing.Color.Beige;
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.saveButton.Location = new System.Drawing.Point(19, 280);
+            this.saveButton.Location = new System.Drawing.Point(13, 187);
             this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(154, 48);
@@ -90,7 +88,7 @@
             // 
             this.specialityNameLabel.AutoSize = true;
             this.specialityNameLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.specialityNameLabel.Location = new System.Drawing.Point(39, 182);
+            this.specialityNameLabel.Location = new System.Drawing.Point(35, 124);
             this.specialityNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.specialityNameLabel.Name = "specialityNameLabel";
             this.specialityNameLabel.Size = new System.Drawing.Size(227, 22);
@@ -101,7 +99,7 @@
             // 
             this.specialityCodeLabel.AutoSize = true;
             this.specialityCodeLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.specialityCodeLabel.Location = new System.Drawing.Point(39, 98);
+            this.specialityCodeLabel.Location = new System.Drawing.Point(35, 65);
             this.specialityCodeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.specialityCodeLabel.Name = "specialityCodeLabel";
             this.specialityCodeLabel.Size = new System.Drawing.Size(176, 22);
@@ -112,7 +110,7 @@
             // 
             this.facultyLabel.AutoSize = true;
             this.facultyLabel.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.facultyLabel.Location = new System.Drawing.Point(39, 13);
+            this.facultyLabel.Location = new System.Drawing.Point(35, 5);
             this.facultyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.facultyLabel.Name = "facultyLabel";
             this.facultyLabel.Size = new System.Drawing.Size(100, 22);
@@ -124,7 +122,7 @@
             this.closeButton.BackColor = System.Drawing.Color.Beige;
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.closeButton.Location = new System.Drawing.Point(284, 280);
+            this.closeButton.Location = new System.Drawing.Point(277, 187);
             this.closeButton.Margin = new System.Windows.Forms.Padding(4);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(154, 48);
@@ -138,7 +136,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(454, 346);
+            this.ClientSize = new System.Drawing.Size(440, 246);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.specialityNameInput);
             this.Controls.Add(this.specialityCodeInput);
@@ -150,9 +148,9 @@
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(470, 385);
+            this.MaximumSize = new System.Drawing.Size(456, 285);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(470, 385);
+            this.MinimumSize = new System.Drawing.Size(456, 285);
             this.Name = "SpecialityFormEdit";
             this.Text = "Редактирование данных специальности";
             this.ResumeLayout(false);
