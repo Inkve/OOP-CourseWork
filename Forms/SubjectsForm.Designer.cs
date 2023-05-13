@@ -95,6 +95,7 @@
             this.subjectTable.Size = new System.Drawing.Size(990, 250);
             this.subjectTable.TabIndex = 0;
             this.subjectTable.TabStop = false;
+            this.subjectTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectTable_CellContentClick);
             this.subjectTable.SelectionChanged += new System.EventHandler(this.selectionChanged);
             // 
             // Id

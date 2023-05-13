@@ -75,10 +75,10 @@
             this.saveButton.BackColor = System.Drawing.Color.Beige;
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.saveButton.Location = new System.Drawing.Point(13, 187);
+            this.saveButton.Location = new System.Drawing.Point(13, 198);
             this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(154, 48);
+            this.saveButton.Size = new System.Drawing.Size(154, 37);
             this.saveButton.TabIndex = 10;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = false;
@@ -122,10 +122,10 @@
             this.closeButton.BackColor = System.Drawing.Color.Beige;
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.closeButton.Location = new System.Drawing.Point(277, 187);
+            this.closeButton.Location = new System.Drawing.Point(277, 198);
             this.closeButton.Margin = new System.Windows.Forms.Padding(4);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(154, 48);
+            this.closeButton.Size = new System.Drawing.Size(154, 37);
             this.closeButton.TabIndex = 11;
             this.closeButton.Text = "Выход";
             this.closeButton.UseVisualStyleBackColor = false;

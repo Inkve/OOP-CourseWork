@@ -23,7 +23,7 @@ namespace CourseWork_With_SQLite.Forms
         {
             string _speciality = specialityInput.Text;
             string _name = nameInput.Text;
-            if (!string.IsNullOrEmpty(_speciality) && !string.IsNullOrEmpty(_name)) 
+            if (!string.IsNullOrEmpty(_speciality) && !string.IsNullOrEmpty(_name))
             {
                 Speciality temp_speciality = (specialities.Where(e => e.SpecialityCode == _speciality)).AsEnumerable().First();
                 Subject temp = new Subject(temp_speciality.Id.ToString(), _name);
@@ -77,6 +77,37 @@ namespace CourseWork_With_SQLite.Forms
         private void selectionChanged(object sender, EventArgs e)
         {
             subjectTable.ClearSelection();
+        }
+
+        private void subjectTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+                SubjectEditForm subjectEditForm = new SubjectEditForm(subjectTable.Rows[e.RowIndex].Cells[0].Value.ToString());
+                subjectEditForm.ShowDialog();
+                updateFromDataBase();
+                updateTable();
+            }
+            if (e.ColumnIndex == 5)
+            {
+                using (CourseWorkContext context = new CourseWorkContext())
+                {
+                    Subject subject = context.Subjects.FirstOrDefault(el => el.Id.ToString().ToLower() == subjectTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                    if (subject != null)
+                    {
+                        String subjectId = subjectTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        context.Subjects.Remove(subject);
+                        context.SaveChanges();
+                        foreach (Exam exam in context.Exams.Where(e => e.IdSubject == subjectId).ToList())
+                        {
+                            context.Exams.Remove(exam);
+                            context.SaveChanges();
+                        }
+                    }
+                    updateFromDataBase();
+                    updateTable();
+                }
+            }
         }
     }
 }
