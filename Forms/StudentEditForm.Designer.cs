@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentEditForm));
             this.exitButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.groupInput = new System.Windows.Forms.TextBox();
@@ -74,18 +75,21 @@
             this.saveButton.TabIndex = 9;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // groupInput
             // 
             this.groupInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupInput.Location = new System.Drawing.Point(13, 415);
             this.groupInput.Name = "groupInput";
+            this.groupInput.ReadOnly = true;
             this.groupInput.Size = new System.Drawing.Size(314, 29);
             this.groupInput.TabIndex = 8;
             // 
             // birthdayInput
             // 
             this.birthdayInput.CalendarMonthBackground = System.Drawing.SystemColors.ControlLight;
+            this.birthdayInput.Enabled = false;
             this.birthdayInput.Location = new System.Drawing.Point(12, 205);
             this.birthdayInput.Name = "birthdayInput";
             this.birthdayInput.Size = new System.Drawing.Size(315, 29);
@@ -95,7 +99,7 @@
             // 
             this.semesterInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.semesterInput.Location = new System.Drawing.Point(13, 299);
-            this.semesterInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.semesterInput.Margin = new System.Windows.Forms.Padding(4);
             this.semesterInput.Maximum = new decimal(new int[] {
             12,
             0,
@@ -153,6 +157,7 @@
             // 
             this.specialityInput.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.specialityInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.specialityInput.Enabled = false;
             this.specialityInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.specialityInput.FormattingEnabled = true;
             this.specialityInput.Location = new System.Drawing.Point(13, 357);
@@ -266,7 +271,8 @@
             this.Controls.Add(this.specialityLabel);
             this.Controls.Add(this.groupLabel);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(358, 543);
             this.MinimizeBox = false;

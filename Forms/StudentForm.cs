@@ -1,6 +1,7 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
 using System.Data;
+using System.Runtime.InteropServices;
 
 namespace CourseWork_With_SQLite.Forms
 {
@@ -31,21 +32,46 @@ namespace CourseWork_With_SQLite.Forms
             string _speciality = specialityInput.Text;
             string _group = groupInput.Text;
 
-            if (!string.IsNullOrEmpty(_surname) && !string.IsNullOrEmpty(_name) && !string.IsNullOrEmpty(_patronymic)
-                && !string.IsNullOrEmpty(_speciality) && !string.IsNullOrEmpty(_group))
+            try
             {
-                Classes.Student temp = new Classes.Student(_surname, _name, _patronymic, _birhday, _budget, _semester, _speciality, _group);
-                temp.AddInDataBase();
-                updateTable();
+                if (!string.IsNullOrEmpty(_surname) && !string.IsNullOrEmpty(_name) && !string.IsNullOrEmpty(_patronymic)
+                && !string.IsNullOrEmpty(_speciality) && !string.IsNullOrEmpty(_group))
+                {
+                    CourseWorkContext context = new CourseWorkContext();
+                    students = context.Students.AsEnumerable();
+                    if (students.Where(e => e.Surname == _surname && e.Name == _name && e.Patronymic == _patronymic
+                          && e.SpecialityCode == _speciality && e.BirthdayDate.Year == _birhday.Year &&
+                            e.BirthdayDate.Month == _birhday.Month && e.BirthdayDate.Day == _birhday.Day).FirstOrDefault() != null)
+                    {
+                        throw new Exception("Такой студент уже существует!");
+                    }
+                    if (DateTime.Now.Year - _birhday.Year < 16)
+                    {
+                        throw new Exception("Студенту должно быть как минимум 16 лет!");
+                    }
+                    Classes.Student temp = new Classes.Student(_surname, _name, _patronymic, _birhday, _budget, _semester, _speciality, _group);
+                    temp.AddInDataBase();
+                    updateTable();
 
-                surnameInput.Text = "";
-                nameInput.Text = "";
-                patronymicInput.Text = "";
-                birthdayInput.Text = DateTime.Now.ToString();
-                budgetInput.Checked = false;
-                semesterInput.Value = 1;
-                specialityInput.Text = "";
-                groupInput.Text = "";
+                    surnameInput.Text = "";
+                    nameInput.Text = "";
+                    patronymicInput.Text = "";
+                    birthdayInput.Text = DateTime.Now.ToString();
+                    budgetInput.Checked = false;
+                    semesterInput.Value = 1;
+                    specialityInput.Text = "";
+                    groupInput.Text = "";
+                }
+                else
+                {
+                    throw new Exception("Не все опции заполнены!");
+                }
+            }
+            catch (Exception ex)
+            {
+                [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+                static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
+                MessageBox(IntPtr.Zero, ex.Message, "Ошибка", 0);
             }
         }
 
@@ -99,37 +125,22 @@ namespace CourseWork_With_SQLite.Forms
             }
             if (e.ColumnIndex == 6)
             {
-                //using (CourseWorkContext context = new CourseWorkContext())
-                //{
-                //    Speciality speciality = context.Specialities.FirstOrDefault(el => el.Id.ToString().ToLower() == specialityTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
-                //    if (speciality != null)
-                //    {
-                //        String specialityId = speciality.Id.ToString();
-                //        String specialityCode = speciality.SpecialityCode;
-                //        context.Specialities.Remove(speciality);
-                //        context.SaveChanges();
-                //        List<String> studentsId = new List<String>();
-                //        foreach (Student student in context.Students.Where(e => e.SpecialityCode == specialityCode).ToList())
-                //        {
-                //            studentsId.Add(student.Id.ToString());
-                //            context.Students.Remove(student);
-                //            context.SaveChanges();
-                //        }
-                //        foreach (Subject subject in context.Subjects.Where(e => e.SpecialityID == specialityId).ToList())
-                //        {
-                //            context.Subjects.Remove(subject);
-                //            context.SaveChanges();
-                //        }
-                //        foreach (string studentId in studentsId)
-                //        {
-                //            foreach (Exam exam in context.Exams.Where(e => e.IdStudent == studentId).ToList())
-                //            {
-                //                context.Exams.Remove(exam);
-                //                context.SaveChanges();
-                //            }
-                //        }
-                //    }
-                updateTable();
+                using (CourseWorkContext context = new CourseWorkContext())
+                {
+                    Student student = context.Students.FirstOrDefault(el => el.Id.ToString().ToLower() == studentTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                    if (student != null)
+                    {
+                        String studentId = student.Id.ToString();
+                        context.Students.Remove(student);
+                        context.SaveChanges();
+                        foreach (Exam exam in context.Exams.Where(e => e.IdStudent == studentId).ToList())
+                        {
+                            context.Exams.Remove(exam);
+                            context.SaveChanges();
+                        }
+                    }
+                    updateTable();
+                }
             }
         }
     }
