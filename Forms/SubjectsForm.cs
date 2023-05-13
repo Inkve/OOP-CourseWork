@@ -1,6 +1,7 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
 using System.Data;
+using System.Runtime.InteropServices;
 
 namespace CourseWork_With_SQLite.Forms
 {
@@ -23,15 +24,31 @@ namespace CourseWork_With_SQLite.Forms
         {
             string _speciality = specialityInput.Text;
             string _name = nameInput.Text;
-            if (!string.IsNullOrEmpty(_speciality) && !string.IsNullOrEmpty(_name))
+            try
             {
-                Speciality temp_speciality = (specialities.Where(e => e.SpecialityCode == _speciality)).AsEnumerable().First();
-                Subject temp = new Subject(temp_speciality.Id.ToString(), _name);
-                temp.AddInDataBase();
-
-                specialityInput.Text = "";
-                nameInput.Text = "";
-                updateTable();
+                if (!string.IsNullOrEmpty(_speciality) && !string.IsNullOrEmpty(_name))
+                {
+                    Speciality temp_speciality = (specialities.Where(e => e.SpecialityCode == _speciality)).AsEnumerable().First();
+                    if (subjects.FirstOrDefault(e => e.SpecialityID.ToString().ToLower() == temp_speciality.Id.ToString().ToLower() && e.Name == _name) != null)
+                    {
+                        throw new Exception("Такая дисциплина уже существует!");
+                    }
+                    Subject temp = new Subject(temp_speciality.Id.ToString(), _name);
+                    temp.AddInDataBase();
+                    specialityInput.Text = "";
+                    nameInput.Text = "";
+                    updateTable();
+                }
+                else
+                {
+                    throw new Exception("Не все опции заполнены!");
+                }
+            }
+            catch(Exception ex)
+            {
+                [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+                static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
+                MessageBox(IntPtr.Zero, ex.Message, "Ошибка", 0);
             }
         }
 
