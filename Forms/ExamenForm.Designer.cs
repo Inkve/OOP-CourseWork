@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExamenForm));
             this.redactorViewGroupBox = new System.Windows.Forms.GroupBox();
             this.showButton = new System.Windows.Forms.Button();
             this.semesterInput = new System.Windows.Forms.ComboBox();
@@ -365,6 +366,7 @@
             this.Controls.Add(this.addingNewGroupBox);
             this.Controls.Add(this.redactorViewGroupBox);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1136, 564);
             this.Name = "ExamenForm";

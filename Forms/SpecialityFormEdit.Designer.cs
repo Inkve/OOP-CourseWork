@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpecialityFormEdit));
             this.specialityNameInput = new System.Windows.Forms.TextBox();
             this.specialityCodeInput = new System.Windows.Forms.TextBox();
             this.facultyInput = new System.Windows.Forms.ComboBox();
@@ -146,6 +147,7 @@
             this.Controls.Add(this.specialityCodeLabel);
             this.Controls.Add(this.facultyLabel);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(456, 285);

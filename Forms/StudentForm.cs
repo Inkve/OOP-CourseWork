@@ -32,7 +32,7 @@ namespace CourseWork_With_SQLite.Forms
             string _group = groupInput.Text;
 
             if (!string.IsNullOrEmpty(_surname) && !string.IsNullOrEmpty(_name) && !string.IsNullOrEmpty(_patronymic)
-                && !string.IsNullOrEmpty(_speciality) && !string.IsNullOrEmpty(_group) )
+                && !string.IsNullOrEmpty(_speciality) && !string.IsNullOrEmpty(_group))
             {
                 Classes.Student temp = new Classes.Student(_surname, _name, _patronymic, _birhday, _budget, _semester, _speciality, _group);
                 temp.AddInDataBase();
@@ -87,6 +87,50 @@ namespace CourseWork_With_SQLite.Forms
         private void selectionChanged(object sender, EventArgs e)
         {
             studentTable.ClearSelection();
+        }
+
+        private void studentTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                StudentEditForm studentEditForm = new StudentEditForm(studentTable.Rows[e.RowIndex].Cells[0].Value.ToString());
+                studentEditForm.ShowDialog();
+                updateTable();
+            }
+            if (e.ColumnIndex == 6)
+            {
+                //using (CourseWorkContext context = new CourseWorkContext())
+                //{
+                //    Speciality speciality = context.Specialities.FirstOrDefault(el => el.Id.ToString().ToLower() == specialityTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                //    if (speciality != null)
+                //    {
+                //        String specialityId = speciality.Id.ToString();
+                //        String specialityCode = speciality.SpecialityCode;
+                //        context.Specialities.Remove(speciality);
+                //        context.SaveChanges();
+                //        List<String> studentsId = new List<String>();
+                //        foreach (Student student in context.Students.Where(e => e.SpecialityCode == specialityCode).ToList())
+                //        {
+                //            studentsId.Add(student.Id.ToString());
+                //            context.Students.Remove(student);
+                //            context.SaveChanges();
+                //        }
+                //        foreach (Subject subject in context.Subjects.Where(e => e.SpecialityID == specialityId).ToList())
+                //        {
+                //            context.Subjects.Remove(subject);
+                //            context.SaveChanges();
+                //        }
+                //        foreach (string studentId in studentsId)
+                //        {
+                //            foreach (Exam exam in context.Exams.Where(e => e.IdStudent == studentId).ToList())
+                //            {
+                //                context.Exams.Remove(exam);
+                //                context.SaveChanges();
+                //            }
+                //        }
+                //    }
+                updateTable();
+            }
         }
     }
 }
