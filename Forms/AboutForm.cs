@@ -5,13 +5,20 @@
     /// </summary>
     public partial class AboutForm : Form
     {
+        private System.Windows.Forms.Timer tmr;
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
+        /// 
         public AboutForm()
         {
             InitializeComponent();
-            CloseFormAsync();
+            tmr = new System.Windows.Forms.Timer();
+            tmr.Tick += delegate {
+                this.Close();
+            };
+            tmr.Interval = (int)TimeSpan.FromSeconds(5).TotalMilliseconds;
+            tmr.Start();
         }
 
         /// <summary>
@@ -21,17 +28,6 @@
         /// <param name="e">Объект, с дополнительной информацией</param>
         private void okButton_Click(object sender, EventArgs e)
         {
-            Close();
-        }
-
-        private async void CloseFormAsync()
-        {
-           // await Task.Run(() => CloseForm());
-        }
-
-        private void CloseForm()
-        { 
-            Thread.Sleep(5000);
             Close();
         }
     }
