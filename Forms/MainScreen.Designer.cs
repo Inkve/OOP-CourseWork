@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreen));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facultiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.specialitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +58,7 @@
             this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.exitButton = new System.Windows.Forms.Button();
+            this.pathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.filtersGroupBox.SuspendLayout();
             this.showGroupBox.SuspendLayout();
@@ -79,9 +81,19 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pathToolStripMenuItem,
+            this.generateToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 19);
             this.fileToolStripMenuItem.Text = "Файл";
+            // 
+            // generateToolStripMenuItem
+            // 
+            this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
+            this.generateToolStripMenuItem.Size = new System.Drawing.Size(318, 22);
+            this.generateToolStripMenuItem.Text = "Генерация отчета с текущими параметрами";
+            this.generateToolStripMenuItem.Click += new System.EventHandler(this.generateToolStripMenuItem_Click);
             // 
             // добавлениеToolStripMenuItem
             // 
@@ -362,6 +374,13 @@
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // pathToolStripMenuItem
+            // 
+            this.pathToolStripMenuItem.Name = "pathToolStripMenuItem";
+            this.pathToolStripMenuItem.Size = new System.Drawing.Size(318, 22);
+            this.pathToolStripMenuItem.Text = "Задание пути для сохранения";
+            this.pathToolStripMenuItem.Click += new System.EventHandler(this.pathToolStripMenuItem_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
@@ -421,5 +440,8 @@
         private DataGridViewTextBoxColumn Semester;
         private DataGridViewTextBoxColumn Subject;
         private DataGridViewTextBoxColumn Score;
+        private ToolStripMenuItem generateToolStripMenuItem;
+        private SaveFileDialog saveFileDialog1;
+        private ToolStripMenuItem pathToolStripMenuItem;
     }
 }
