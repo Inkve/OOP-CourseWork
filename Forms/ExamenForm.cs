@@ -189,6 +189,10 @@ namespace CourseWork_With_SQLite.Forms
                         {
                             throw new Exception("Результаты этого студента были добавлены раннее!");
                         }
+                        if (students.Where(e => e.SpecialityCode == specialityCode && e.ToString() == studentInput.Text).First().SemesterOfStudy <  semesterDecision)
+                        {
+                            throw new Exception("Текущему студенту нельзя поставить оценку за этот предмет! (Семестр обучения студента меньше семестра проведения экзамена)");
+                        }
                         Exam temp = new Exam(studentId, subjectId, semesterDecision, scoreDecision);
                         temp.AddInDataBase();
                         await updateFromDataBase();
