@@ -2,6 +2,7 @@
 using CourseWork_With_SQLite.Context;
 using System.Data;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace CourseWork_With_SQLite.Forms
@@ -24,6 +25,11 @@ namespace CourseWork_With_SQLite.Forms
             string _specialityName = specialityNameInput.Text;
             try
             {
+                Regex regex = new Regex(@"\d{2}.\d{2}.\d{2}");
+                if (regex.Matches(_specialityCode).Count == 0) 
+                {
+                    throw new Exception("Введите специальность в формате 'XX.XX.XX' !");
+                }
                 if (!string.IsNullOrEmpty(_facultyName) && !string.IsNullOrEmpty(_specialityCode) && !string.IsNullOrEmpty(_specialityName))
                 {
                     if (specialities.FirstOrDefault(e => e.SpecialityCode == _specialityCode) != null)
