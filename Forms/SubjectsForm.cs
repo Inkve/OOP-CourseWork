@@ -5,21 +5,45 @@ using System.Runtime.InteropServices;
 
 namespace CourseWork_With_SQLite.Forms
 {
+    /// <summary>
+    /// Класс для реализации формы Дисциплины
+    /// </summary>
     public partial class SubjectsForm : Form
     {
+        /// <summary>
+        /// Поле для хранения списка дисциплин
+        /// </summary>
         private IEnumerable<Subject> subjects;
+
+        /// <summary>
+        /// Поле для хранения списка специальностей
+        /// </summary>
         private IEnumerable<Speciality> specialities;
+
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public SubjectsForm()
         {
             InitializeComponent();
             updateTable();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку Выход
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку Добавить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void addButton_Click(object sender, EventArgs e)
         {
             string _speciality = specialityInput.Text;
@@ -52,6 +76,9 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод обновления таблицы
+        /// </summary>
         private async void updateTable()
         {
             await updateFromDataBase();
@@ -74,6 +101,11 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод обновления вариантов списка
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private async void updateVariants(object sender, EventArgs e)
         {
             // await updateFromDataBase();
@@ -84,6 +116,10 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод обновления данных из базы данных
+        /// </summary>
+        /// <returns>Task</returns>
         private async Task updateFromDataBase()
         {
             CourseWorkContext context = new CourseWorkContext();
@@ -91,11 +127,21 @@ namespace CourseWork_With_SQLite.Forms
             subjects = context.Subjects.AsEnumerable();
         }
 
+        /// <summary>
+        /// Метод изменения выделения таблицы
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void selectionChanged(object sender, EventArgs e)
         {
             subjectTable.ClearSelection();
         }
 
+        /// <summary>
+        /// Метод нажатия на ячейку таблицы 
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void subjectTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 4)

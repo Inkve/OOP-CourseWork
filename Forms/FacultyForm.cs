@@ -1,25 +1,42 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
 using CourseWork_With_SQLite.Forms;
-using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 
 namespace CourseWork_With_SQLite
 {
+    /// <summary>
+    ///  Класс для формы Факультета
+    /// </summary>
     public partial class FacultyForm : Form
     {
+        /// <summary>
+        /// Поле для хранения списка Факультетов
+        /// </summary>
         private IEnumerable<Faculty> faculties;
+
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public FacultyForm()
         {
             InitializeComponent();
             updateTable();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку ВЫход
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void closeButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Метод обновления таблицы
+        /// </summary>
         private async void updateTable()
         {
             await updateFromDataBase();
@@ -37,6 +54,11 @@ namespace CourseWork_With_SQLite
             }
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку Добавить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void addButton_Click(object sender, EventArgs e)
         {
             string _name = nameInput.Text;
@@ -66,17 +88,31 @@ namespace CourseWork_With_SQLite
             }
         }
 
+        /// <summary>
+        /// Метод обновления информации
+        /// </summary>
+        /// <returns></returns>
         private async Task updateFromDataBase()
         {
             CourseWorkContext context = new CourseWorkContext();
             faculties = context.Faculties.AsEnumerable();
         }
 
+        /// <summary>
+        /// Метод изменения выделения таблицы
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void selectionChanged(object sender, EventArgs e)
         {
             facultyTable.ClearSelection();
         }
 
+        /// <summary>
+        /// Метод нажатия на ячейку таблицы
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void facultyTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 3)

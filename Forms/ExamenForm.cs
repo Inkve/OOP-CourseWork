@@ -1,16 +1,37 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
-using Microsoft.EntityFrameworkCore.Query;
 using System.Runtime.InteropServices;
 
 namespace CourseWork_With_SQLite.Forms
 {
+    /// <summary>
+    /// Класс формы с экзаменом
+    /// </summary>
     public partial class ExamenForm : Form
     {
+        /// <summary>
+        /// Поле для хранения списка студентов
+        /// </summary>
         private IEnumerable<Student> students;
+
+        /// <summary>
+        /// Поле для хранения списка специальностей
+        /// </summary>
         private IEnumerable<Speciality> specialities;
+
+        /// <summary>
+        /// Поле для хранения списка дисциплин
+        /// </summary>
         private IEnumerable<Subject> subjects;
+
+        /// <summary>
+        /// Поле для хранения экзаменов
+        /// </summary>
         private IEnumerable<Exam> exams;
+
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public ExamenForm()
         {
             updateFromDataBase();
@@ -21,11 +42,20 @@ namespace CourseWork_With_SQLite.Forms
             scoreInput.Enabled = false;
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку выхода
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Метод обновления информации
+        /// </summary>
+        /// <returns> Task</returns>
         private async Task updateFromDataBase()
         {
             CourseWorkContext context = new CourseWorkContext();
@@ -35,6 +65,9 @@ namespace CourseWork_With_SQLite.Forms
             exams = context.Exams.AsEnumerable();
         }
 
+        /// <summary>
+        /// Метод обновления опций специальностей
+        /// </summary>
         private void updateSpecialityOption()
         {
             string currentDicision = specialityInput.Text;
@@ -51,6 +84,9 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод обновления опций семестров
+        /// </summary>
         private void updateSemesterOption()
         {
             string currentDicision = semesterInput.Text;
@@ -62,12 +98,20 @@ namespace CourseWork_With_SQLite.Forms
             semesterInput.Text = currentDicision;
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку Применить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void specialityInput_Enter(object sender, EventArgs e)
         {
             updateSpecialityOption();
             updateStudentOption();
         }
 
+        /// <summary>
+        /// Метод обновления опций Дисциплины
+        /// </summary>
         private void updateSubjectOption()
         {   
             string currentDecision = subjectInput.Text;
@@ -88,6 +132,9 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод обновления опций Студенты
+        /// </summary>
         private void updateStudentOption()
         {
             string specialityDecision = specialityInput.Text;
@@ -113,11 +160,19 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод нажатия кнопки Добавить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void showButton_Click(object sender, EventArgs e)
         {
             showTable();
         }
 
+        /// <summary>
+        /// Метод обновления таблицы
+        /// </summary>
         private void showTable()
         {
             updateStudentOption();
@@ -168,6 +223,11 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод нажатия кнопки Добавить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private async void addButton_Click(object sender, EventArgs e)
         {
             string specialityDecision = specialityInput.Text;
@@ -216,11 +276,21 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод изменения выделения
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void selectionChanged(object sender, EventArgs e)
         {
             examTable.ClearSelection();
         }
 
+        /// <summary>
+        /// Метод нажатия на ячейки таблицы
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void examTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 5) 

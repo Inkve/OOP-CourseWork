@@ -1,22 +1,28 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CourseWork_With_SQLite.Forms
 {
+    /// <summary>
+    /// Класс для формы Редактирование данных специальностей
+    /// </summary>
     public partial class SpecialityFormEdit : Form
     {
+        /// <summary>
+        /// Поле для хранения списка специальностей
+        /// </summary>
         private IEnumerable<Speciality> specialities;
+
+        /// <summary>
+        /// Поле для хранения текущей специальности
+        /// </summary>
         private Speciality currentSpeciality;
 
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="Id">Id специальности</param>
         public SpecialityFormEdit(string Id)
         {
             InitializeComponent();
@@ -30,11 +36,21 @@ namespace CourseWork_With_SQLite.Forms
             specialityNameInput.Text = currentSpeciality.Name.ToString(); 
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку Сохранить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void closeButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку сохранить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void saveButton_Click(object sender, EventArgs e)
         {
             using (CourseWorkContext context = new CourseWorkContext())

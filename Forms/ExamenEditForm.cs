@@ -4,13 +4,32 @@ using System.Data;
 
 namespace CourseWork_With_SQLite.Forms
 {
+    /// <summary>
+    /// Класс для реализации формы для редактирования данных экзамена
+    /// </summary>
     public partial class ExamenEditForm : Form
     {
+        /// <summary>
+        /// Поле для хранения списков студентов
+        /// </summary>
         private IEnumerable<Student> students;
+        /// <summary>
+        /// Поле для хранения списков дисциплин
+        /// </summary>
         private IEnumerable<Subject> subjects;
+        /// <summary>
+        /// Поле для хранения списков экзаменов
+        /// </summary>
         private IEnumerable<Exam> exams;
+        /// <summary>
+        /// Поле для хранения объекта текущего объекта
+        /// </summary>
         private Exam currentExam;
 
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="id">Id экзамена </param>
         public ExamenEditForm(string id)
         {
             CourseWorkContext context = new CourseWorkContext();
@@ -22,6 +41,9 @@ namespace CourseWork_With_SQLite.Forms
             updateInformation();
         }
 
+        /// <summary>
+        /// Метод обновления информации
+        /// </summary>
         private void updateInformation()
         { 
             subjectInput.Items.Add(subjects.FirstOrDefault(e => e.Id.ToString() == currentExam.IdSubject).ToString());
@@ -32,11 +54,21 @@ namespace CourseWork_With_SQLite.Forms
             studentInput.Text = studentInput.Items[0].ToString();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку выхода
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void exitButton_Click(object sender, EventArgs e)
         { 
             Close();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку сохранения 
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void saveButton_Click(object sender, EventArgs e)
         {
             using (CourseWorkContext context = new CourseWorkContext())

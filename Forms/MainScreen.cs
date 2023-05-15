@@ -1,25 +1,49 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 using System.Data;
-using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using IronXL;
-using Aspose.Pdf.Operators;
 
 namespace CourseWork_With_SQLite.Forms
 {
+    /// <summary>
+    /// Класс для реализации формы главного окна
+    /// </summary>
     public partial class MainScreen : Form
     {
+        /// <summary>
+        /// Поле для хранения списка студентов
+        /// </summary>
         private IEnumerable<Student> students;
+
+        /// <summary>
+        /// Поле для хранения спика специальностей
+        /// </summary>
         private IEnumerable<Speciality> specialities;
+
+        /// <summary>
+        /// Поле для хранения списка факультетов
+        /// </summary>
         private IEnumerable<Faculty> faculties;
+
+        /// <summary>
+        /// Поле для хранения экзаменов
+        /// </summary>
         private IEnumerable<Exam> exams;
+
+        /// <summary>
+        /// Поле для хранения списка дисциплин
+        /// </summary>
         private IEnumerable<Subject> subjects;
+
+        /// <summary>
+        /// Поле для хранения пути сохранения
+        /// </summary>
         private String? PATH;
 
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public MainScreen()
         {
             updateFromDataBase();
@@ -32,6 +56,11 @@ namespace CourseWork_With_SQLite.Forms
             updateTable();
         }
 
+        /// <summary>
+        /// Метод нажатия на меню Факультеты
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void facultiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FacultyForm facultyForm = new FacultyForm();
@@ -42,6 +71,11 @@ namespace CourseWork_With_SQLite.Forms
             updateTable();
         }
 
+        /// <summary>
+        /// Метод нажатия на меню Специальности
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void specialitiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SpecialityForm specialityForm = new SpecialityForm();
@@ -52,6 +86,11 @@ namespace CourseWork_With_SQLite.Forms
             updateTable();
         }
 
+        /// <summary>
+        /// Метод нажатия на меню Студенты
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StudentForm studentForm = new StudentForm();
@@ -62,6 +101,11 @@ namespace CourseWork_With_SQLite.Forms
             updateTable();
         }
 
+        /// <summary>
+        /// Метод нажатия на меню Дисциплины
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void subjectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubjectsForm subjectForm = new SubjectsForm();
@@ -72,6 +116,11 @@ namespace CourseWork_With_SQLite.Forms
             updateTable();
         }
 
+        /// <summary>
+        /// Метод нажатия на меню Экзамены
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void examensToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExamenForm examenForm = new ExamenForm();
@@ -82,6 +131,11 @@ namespace CourseWork_With_SQLite.Forms
             updateTable();
         }
 
+        /// <summary>
+        /// Метод нажатия на меню О программе
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
@@ -92,6 +146,10 @@ namespace CourseWork_With_SQLite.Forms
             updateTable();
         }
 
+        /// <summary>
+        /// Метод обновления информации
+        /// </summary>
+        /// <returns> Task </returns>
         private async Task updateFromDataBase()
         {
             CourseWorkContext context = new CourseWorkContext();
@@ -102,6 +160,9 @@ namespace CourseWork_With_SQLite.Forms
             subjects = context.Subjects.AsEnumerable();
         }
 
+        /// <summary>
+        /// Метод обновления вариантов Семестр
+        /// </summary>
         private void updateSemesterVariants()
         {
             string currentDicision = string.IsNullOrEmpty(semesterInput.Text) ? "Все" : semesterInput.Text;
@@ -114,6 +175,9 @@ namespace CourseWork_With_SQLite.Forms
             semesterInput.Text = currentDicision;
         }
 
+        /// <summary>
+        /// Метод обновления вариантов Факультет
+        /// </summary>
         private void updateFacultyVariants()
         {
             string currentDicision = string.IsNullOrEmpty(facultyInput.Text) ?  "Все" : facultyInput.Text;
@@ -126,6 +190,9 @@ namespace CourseWork_With_SQLite.Forms
             facultyInput.Text = currentDicision;
         }
 
+        /// <summary>
+        /// Метод обновления вариантов Специальность
+        /// </summary>
         private void updateSpecialityVariants()
         {
             string currentFacultyDicision = facultyInput.Text;
@@ -154,6 +221,11 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку применить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void applyButton_Click(object sender, EventArgs e)
         {
             try
@@ -168,6 +240,9 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод обновления таблицы
+        /// </summary>
         private void updateTable()
         {
             try
@@ -288,6 +363,11 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод обновления вариантов опций
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void updateVariants(object sender, EventArgs e)
         {
             updateSemesterVariants();
@@ -295,21 +375,41 @@ namespace CourseWork_With_SQLite.Forms
             updateSpecialityVariants();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку Выход
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Метод при выделении ячеек таблицы
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void selectionChanged(object sender, EventArgs e)
         {
             examTable.ClearSelection();
         }
 
+        /// <summary>
+        /// Метод обновления вариантов Специальность
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void updateSemesterInputAfterFacultiesInput(object sender, EventArgs e)
         {
             updateSpecialityVariants();
         }
 
+        /// <summary>
+        /// Метод очистки фильтров
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void clearFilterButton_Click(object sender, EventArgs e)
         {
             specialityInput.Text = "Все";
@@ -318,6 +418,13 @@ namespace CourseWork_With_SQLite.Forms
             updateTable();
         }
 
+        /// <summary>
+        /// Метод создания отчетов
+        /// </summary>
+        /// <param name="SemesterDecesion">Выбор семестра</param>
+        /// <param name="FacultyDecesion">Выбор факультета</param>
+        /// <param name="SpecialityDecesion">Выбор специальности</param>
+        /// <returns>Task</returns>
         private async Task generateExcel(String SemesterDecesion, String FacultyDecesion, String SpecialityDecesion)
         {
             [DllImport("user32.dll", CharSet = CharSet.Unicode)]
@@ -337,7 +444,6 @@ namespace CourseWork_With_SQLite.Forms
                 workSheet["A6"].Value = "Дата генерации:";
                 workSheet["B6"].Value = DateTime.Now;
                 workSheet["A1:B6"].Style.Font.Bold = true;
-
 
                 workSheet["A8"].Value = "Факультет";
                 workSheet["B8"].Value = "Специальность";
@@ -468,6 +574,11 @@ namespace CourseWork_With_SQLite.Forms
             }
         }
 
+        /// <summary>
+        /// Метод нажатия на меню Создать отчет
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private async void generateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string SemesterDecesion = semesterInput.Text;
@@ -476,6 +587,11 @@ namespace CourseWork_With_SQLite.Forms
             await Task.Run(() => generateExcel(SemesterDecesion, FacultyDecesion, SpecialityDecesion));
         }
 
+        /// <summary>
+        /// Метод нажатия на меню выбрать путь сохранения
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void pathToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();

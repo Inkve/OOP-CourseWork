@@ -21,35 +21,35 @@ namespace CourseWork_With_SQLite.Context
         /// <param name="options"></param>
         public CourseWorkContext(DbContextOptions<CourseWorkContext> options) : base(options) { }
         /// <summary>
-        /// 
+        /// Поле для списка хранения факультетов
         /// </summary>
         public virtual DbSet<Faculty> Faculties { get; set; }
         /// <summary>
-        /// 
+        /// Поле для списка специальностей
         /// </summary>
         public virtual DbSet<Speciality> Specialities { get; set; }
         /// <summary>
-        /// 
+        /// Поле для списка студентов
         /// </summary>
         public virtual DbSet<Student> Students { get; set; }
         /// <summary>
-        /// 
+        /// Поле для списка дисциплин
         /// </summary>
         public virtual DbSet<Subject> Subjects { get; set; }
         /// <summary>
-        /// 
+        /// Поле для списка экзаменов
         /// </summary>
         public virtual DbSet<Exam> Exams { get; set; }
         /// <summary>
-        /// 
+        /// Метод конфигурации 
         /// </summary>
-        /// <param name="optionsBuilder"></param>
+        /// <param name="optionsBuilder"> Опции </param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlite("Data Source=Coursework.db");
         /// <summary>
-        /// 
+        /// Метод создания 
         /// </summary>
-        /// <param name="modelBuilder"></param>
+        /// <param name="modelBuilder">Параметры</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Faculty>(entity =>
@@ -97,7 +97,7 @@ namespace CourseWork_With_SQLite.Context
             OnModelCreatingPartial(modelBuilder);
         }
         /// <summary>
-        /// 
+        /// Метод частичного создания
         /// </summary>
         /// <param name="modelBuilder"></param>
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

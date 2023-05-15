@@ -1,21 +1,28 @@
 ﻿using CourseWork_With_SQLite.Classes;
 using CourseWork_With_SQLite.Context;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CourseWork_With_SQLite.Forms
 {
+    /// <summary>
+    /// Класс для реализации формы Редактирование данных дисциплины
+    /// </summary>
     public partial class SubjectEditForm : Form
     {
+        /// <summary>
+        /// Поле для хранения дисциплин
+        /// </summary>
         private IEnumerable<Subject> subjects;
+
+        /// <summary>
+        /// Поле для хранения тукещей дисциплины
+        /// </summary>
         private Subject currentSubject;
+
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="Id">Id дисциплины</param>
         public SubjectEditForm(String Id)
         {
             InitializeComponent();
@@ -28,11 +35,21 @@ namespace CourseWork_With_SQLite.Forms
             nameInput.Text = currentSubject.ToString();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку Выход
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку Сохранить
+        /// </summary>
+        /// <param name="sender">Объект, который вызвал срабатывание</param>
+        /// <param name="e">Объект, с дополнительной информацией</param>
         private void saveButton_Click(object sender, EventArgs e)
         {
             using (CourseWorkContext context = new CourseWorkContext())
