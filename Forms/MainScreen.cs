@@ -3,6 +3,7 @@ using CourseWork_With_SQLite.Context;
 using System.Data;
 using System.Runtime.InteropServices;
 using IronXL;
+using ClosedXML.Excel;
 
 namespace CourseWork_With_SQLite.Forms
 {
@@ -180,12 +181,16 @@ namespace CourseWork_With_SQLite.Forms
         /// </summary>
         private void updateFacultyVariants()
         {
+            updateFromDataBase();
             string currentDicision = string.IsNullOrEmpty(facultyInput.Text) ?  "Все" : facultyInput.Text;
             facultyInput.Items.Clear();
             facultyInput.Items.Add("Все");
-            foreach (Faculty faculty in faculties)
+            if (faculties != null)
             {
-                facultyInput.Items.Add(faculty.Name);
+                foreach (Faculty faculty in faculties)
+                {
+                    facultyInput.Items.Add(faculty.Name);
+                }
             }
             facultyInput.Text = currentDicision;
         }
@@ -201,9 +206,12 @@ namespace CourseWork_With_SQLite.Forms
                 string currentDicision = string.IsNullOrEmpty(specialityInput.Text) ? "Все" : specialityInput.Text;
                 specialityInput.Items.Clear();
                 specialityInput.Items.Add("Все");
-                foreach (Speciality speciality in specialities)
+                if (specialities != null)
                 {
-                    specialityInput.Items.Add(speciality.SpecialityCode);
+                    foreach (Speciality speciality in specialities)
+                    {
+                        specialityInput.Items.Add(speciality.SpecialityCode);
+                    }
                 }
                 specialityInput.Text = currentDicision;
             }
@@ -256,10 +264,13 @@ namespace CourseWork_With_SQLite.Forms
                 List<string> facultiesIdForTable = new List<string>();
                 if (FacultyDecesion == "Все")
                 {
-                    foreach (Faculty faculty in faculties)
+                    if (faculties != null)
                     {
-                        facultiesIdForTable.Add(faculty.Id.ToString());
-                        tempSpecialities = specialities.ToList();
+                        foreach (Faculty faculty in faculties)
+                        {
+                            facultiesIdForTable.Add(faculty.Id.ToString());
+                            tempSpecialities = specialities.ToList();
+                        }
                     }
                 }
                 else
@@ -431,27 +442,25 @@ namespace CourseWork_With_SQLite.Forms
             static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
             try
             {
-                WorkBook workBook = WorkBook.Create(ExcelFileFormat.XLSX);
-                var workSheet = workBook.CreateWorkSheet("Отчет");
-                workSheet["A1"].Value = "Отчет по успеваемости студентов";
-                workSheet["A2"].Value = "Параметры отчета:";
-                workSheet["A3"].Value = "Семестр:";
-                workSheet["B3"].Value = SemesterDecesion;
-                workSheet["A4"].Value = "Факультет:";
-                workSheet["B4"].Value = FacultyDecesion;
-                workSheet["A5"].Value = "Специальность:";
-                workSheet["B5"].Value = SpecialityDecesion;
-                workSheet["A6"].Value = "Дата генерации:";
-                workSheet["B6"].Value = DateTime.Now;
-                workSheet["A1:B6"].Style.Font.Bold = true;
+                using var wbook = new XLWorkbook();
+                var ws = wbook.Worksheets.Add("Отчет");
+                ws.Cell("A1").Value = "Отчет по успеваемости студентов";
+                ws.Cell("A2").Value = "Параметры отчета:";
+                ws.Cell("A3").Value = "Семестр:";
+                ws.Cell("B3").Value = SemesterDecesion;
+                ws.Cell("A4").Value = "Факультет:";
+                ws.Cell("B4").Value = FacultyDecesion;
+                ws.Cell("A5").Value = "Специальность:";
+                ws.Cell("B5").Value = SpecialityDecesion;
+                ws.Cell("A6").Value = "Дата генерации:";
+                ws.Cell("B6").Value = DateTime.Now;
 
-                workSheet["A8"].Value = "Факультет";
-                workSheet["B8"].Value = "Специальность";
-                workSheet["C8"].Value = "ФИО";
-                workSheet["D8"].Value = "Семестр";
-                workSheet["E8"].Value = "Дисциплина";
-                workSheet["F8"].Value = "Оценка";
-                workSheet["A8:F8"].Style.Font.Bold = true;
+                ws.Cell("A8").Value = "Факультет";
+                ws.Cell("B8").Value = "Специальность";
+                ws.Cell("C8").Value = "ФИО";
+                ws.Cell("D8").Value = "Семестр";
+                ws.Cell("E8").Value = "Дисциплина";
+                ws.Cell("F8").Value = "Оценка";
 
                 Dictionary<string, string> specialityCodeToFacultyName = new Dictionary<string, string>();
 
@@ -545,27 +554,30 @@ namespace CourseWork_With_SQLite.Forms
                 foreach (Exam exam in tempExams)
                 {
                     Student student = students.Where(e => e.Id.ToString() == exam.IdStudent).First();
-                    workSheet["A" + (counter + 9).ToString()].Value = specialityCodeToFacultyName[student.SpecialityCode];
+                    ws.Cell("A" + (counter + 9).ToString()).Value = specialityCodeToFacultyName[student.SpecialityCode];
                     String specialityName = student.SpecialityCode + " - " + specialities.First(e => e.SpecialityCode == student.SpecialityCode).Name;
-                    workSheet["B" + (counter + 9).ToString()].Value = specialityName;
-                    workSheet["C" + (counter + 9).ToString()].Value = student.ToString();
-                    workSheet["D" + (counter + 9).ToString()].Value = exam.Semester;
-                    workSheet["E" + (counter + 9).ToString()].Value = subjects.FirstOrDefault(e => e.Id.ToString() == exam.IdSubject).ToString();
-                    workSheet["F" + (counter + 9).ToString()].Value = exam.Score;
+                    ws.Cell("B" + (counter + 9).ToString()).Value = specialityName;
+                    ws.Cell("C" + (counter + 9).ToString()).Value = student.ToString();
+                    ws.Cell("D" + (counter + 9).ToString()).Value = exam.Semester;
+                    ws.Cell("E" + (counter + 9).ToString()).Value = subjects.FirstOrDefault(e => e.Id.ToString() == exam.IdSubject).ToString();
+                    ws.Cell("F" + (counter + 9).ToString()).Value = exam.Score;
                     counter++;
                 }
 
                 if (PATH != null)
                 {
-                    workBook.SaveAs(PATH.ToString());
+                    wbook.SaveAs(PATH.ToString());
                     MessageBox(IntPtr.Zero, "Отчет успешно сохранен в выбранное раннее место!", "Сообщение", 0);
                     PATH = null;
                 }
                 else
                 {
-                    workBook.SaveAs("report_" + DateTime.Now.ToString().Split()[0] + "_" + DateTime.Now.Hour.ToString()
-                        + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString() + ".xlsx");
-                    MessageBox(IntPtr.Zero, "Отчет успешно сохранен в папку с приложением!", "Сообщение", 0);
+                    var pathToFile = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+                    var path = Path.Combine(pathToFile, "Отчет по успеваемости" + DateTime.Now.ToString().Split()[0] + " " 
+                        + DateTime.Now.Hour.ToString() + " " + DateTime.Now.Minute.ToString() + "_" 
+                        + DateTime.Now.Second.ToString() + ".xlsx");
+                    wbook.SaveAs(path);
+                    MessageBox(IntPtr.Zero, "Отчет успешно сохранен на рабочий стол!", "Сообщение", 0);
                 }
             }
             catch (Exception ex)

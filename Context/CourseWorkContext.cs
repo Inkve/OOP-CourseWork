@@ -45,7 +45,11 @@ namespace CourseWork_With_SQLite.Context
         /// </summary>
         /// <param name="optionsBuilder"> Опции </param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlite("Data Source=Coursework.db");
+        {
+            var pathToFile = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+            var pathDb = Path.Combine(pathToFile, "Student Achievement", "Coursework.db");
+            optionsBuilder.UseSqlite($"Data Source={pathDb}");
+        }
         /// <summary>
         /// Метод создания 
         /// </summary>
