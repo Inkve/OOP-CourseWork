@@ -603,10 +603,14 @@ namespace CourseWork_With_SQLite.Forms
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Лист Microsoft Excel|*.xlsx";
             saveFileDialog1.Title = "Сохраните Excel файл";
-            saveFileDialog1.ShowDialog();
-            
-            PATH = @saveFileDialog1.FileName;
-            await Task.Run(() => generateExcel(SemesterDecesion, FacultyDecesion, SpecialityDecesion));
+            String defaultFileName = "Отчет по успеваемости " + DateTime.Now.ToString().Split()[0];
+            saveFileDialog1.FileName = defaultFileName;
+            var status = saveFileDialog1.ShowDialog();
+            if (status == DialogResult.OK)
+            {
+                PATH = @saveFileDialog1.FileName;
+                await Task.Run(() => generateExcel(SemesterDecesion, FacultyDecesion, SpecialityDecesion));
+            }
         }
     }
 }
