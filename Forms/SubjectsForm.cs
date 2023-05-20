@@ -153,22 +153,26 @@ namespace CourseWork_With_SQLite.Forms
             }
             if (e.ColumnIndex == 5)
             {
-                using (CourseWorkContext context = new CourseWorkContext())
+                DialogResult dialogResult = MessageBox.Show("Удалить выбранную запись?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    Subject subject = context.Subjects.FirstOrDefault(el => el.Id.ToString().ToLower() == subjectTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
-                    if (subject != null)
+                    using (CourseWorkContext context = new CourseWorkContext())
                     {
-                        String subjectId = subjectTable.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        context.Subjects.Remove(subject);
-                        context.SaveChanges();
-                        foreach (Exam exam in context.Exams.Where(e => e.IdSubject == subjectId).ToList())
+                        Subject subject = context.Subjects.FirstOrDefault(el => el.Id.ToString().ToLower() == subjectTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                        if (subject != null)
                         {
-                            context.Exams.Remove(exam);
+                            String subjectId = subjectTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                            context.Subjects.Remove(subject);
                             context.SaveChanges();
+                            foreach (Exam exam in context.Exams.Where(e => e.IdSubject == subjectId).ToList())
+                            {
+                                context.Exams.Remove(exam);
+                                context.SaveChanges();
+                            }
                         }
+                        updateFromDataBase();
+                        updateTable();
                     }
-                    updateFromDataBase();
-                    updateTable();
                 }
             }
         }

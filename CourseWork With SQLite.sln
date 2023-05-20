@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseWork With SQLite", "CourseWork With SQLite.csproj", "{A03EBF0A-31B0-465D-A4EA-BF7E025E8BC3}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup\Setup.vdproj", "{0B3E7EC4-9B5C-421D-B983-B04BC6277242}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup OOP", "..\Setup OOP\Setup OOP.vdproj", "{FF04911F-AEEB-48B1-A3F2-51BC15C8BEAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{A03EBF0A-31B0-465D-A4EA-BF7E025E8BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A03EBF0A-31B0-465D-A4EA-BF7E025E8BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A03EBF0A-31B0-465D-A4EA-BF7E025E8BC3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B3E7EC4-9B5C-421D-B983-B04BC6277242}.Debug|Any CPU.ActiveCfg = Debug
-		{0B3E7EC4-9B5C-421D-B983-B04BC6277242}.Release|Any CPU.ActiveCfg = Release
+		{FF04911F-AEEB-48B1-A3F2-51BC15C8BEAE}.Debug|Any CPU.ActiveCfg = Debug
+		{FF04911F-AEEB-48B1-A3F2-51BC15C8BEAE}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

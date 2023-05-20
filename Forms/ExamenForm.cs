@@ -302,16 +302,20 @@ namespace CourseWork_With_SQLite.Forms
             }
             if (e.ColumnIndex == 6)
             {
-                using (CourseWorkContext context = new CourseWorkContext())
+                DialogResult dialogResult = MessageBox.Show("Удалить выбранную запись?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    Exam exam = context.Exams.FirstOrDefault(el => 
-                        el.Id.ToString().ToLower() == examTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
-                    if (exam != null)
+                    using (CourseWorkContext context = new CourseWorkContext())
                     {
-                        context.Exams.Remove(exam);
-                        context.SaveChanges();
-                        updateFromDataBase();
-                        showTable();
+                        Exam exam = context.Exams.FirstOrDefault(el =>
+                            el.Id.ToString().ToLower() == examTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                        if (exam != null)
+                        {
+                            context.Exams.Remove(exam);
+                            context.SaveChanges();
+                            updateFromDataBase();
+                            showTable();
+                        }
                     }
                 }
             }

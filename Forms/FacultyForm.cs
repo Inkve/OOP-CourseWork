@@ -124,54 +124,58 @@ namespace CourseWork_With_SQLite
             }
             if (e.ColumnIndex == 4)
             {
-                using (CourseWorkContext context = new CourseWorkContext())
+                DialogResult dialogResult = MessageBox.Show("Удалить выбранную запись?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    Faculty faculty = context.Faculties.FirstOrDefault(el =>
-                        el.Id.ToString().ToLower() == facultyTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
-                    if (faculty != null)
+                    using (CourseWorkContext context = new CourseWorkContext())
                     {
-                        string facultyId = faculty.Id.ToString();
-                        context.Faculties.Remove(faculty);
-                        context.SaveChanges();
-                        updateFromDataBase();
-                        updateTable();
-                        List<String> specialitiesId = new List<String>();
-                        List<String> specialitiesCodes = new List<String>();
-                        foreach (Speciality speciality in context.Specialities.Where(e => e.FacultyId == facultyId).ToList())
+                        Faculty faculty = context.Faculties.FirstOrDefault(el =>
+                            el.Id.ToString().ToLower() == facultyTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                        if (faculty != null)
                         {
-                            specialitiesId.Add(speciality.Id.ToString());
-                            specialitiesCodes.Add(speciality.SpecialityCode);
-                            context.Specialities.Remove(speciality);
+                            string facultyId = faculty.Id.ToString();
+                            context.Faculties.Remove(faculty);
                             context.SaveChanges();
-                        }
-                        List<String> studentsId = new List<String>();
-                        foreach (string specialityCode in specialitiesCodes)
-                        {
-                            foreach (Student student in context.Students.Where(e => e.SpecialityCode == specialityCode).ToList())
+                            updateFromDataBase();
+                            updateTable();
+                            List<String> specialitiesId = new List<String>();
+                            List<String> specialitiesCodes = new List<String>();
+                            foreach (Speciality speciality in context.Specialities.Where(e => e.FacultyId == facultyId).ToList())
                             {
-                                studentsId.Add(student.Id.ToString());
-                                context.Students.Remove(student);
+                                specialitiesId.Add(speciality.Id.ToString());
+                                specialitiesCodes.Add(speciality.SpecialityCode);
+                                context.Specialities.Remove(speciality);
                                 context.SaveChanges();
                             }
-                        }
-                        foreach (string specialityID in specialitiesId)
-                        {
-                            foreach (Subject subject in context.Subjects.Where(e => e.SpecialityID == specialityID).ToList())
+                            List<String> studentsId = new List<String>();
+                            foreach (string specialityCode in specialitiesCodes)
                             {
-                                context.Subjects.Remove(subject);
-                                context.SaveChanges();
+                                foreach (Student student in context.Students.Where(e => e.SpecialityCode == specialityCode).ToList())
+                                {
+                                    studentsId.Add(student.Id.ToString());
+                                    context.Students.Remove(student);
+                                    context.SaveChanges();
+                                }
                             }
-                        }
-                        foreach (string studentId in studentsId)
-                        {
-                            foreach (Exam exam in context.Exams.Where(e => e.IdStudent == studentId).ToList())
+                            foreach (string specialityID in specialitiesId)
                             {
-                                context.Exams.Remove(exam);
-                                context.SaveChanges();
+                                foreach (Subject subject in context.Subjects.Where(e => e.SpecialityID == specialityID).ToList())
+                                {
+                                    context.Subjects.Remove(subject);
+                                    context.SaveChanges();
+                                }
+                            }
+                            foreach (string studentId in studentsId)
+                            {
+                                foreach (Exam exam in context.Exams.Where(e => e.IdStudent == studentId).ToList())
+                                {
+                                    context.Exams.Remove(exam);
+                                    context.SaveChanges();
+                                }
                             }
                         }
                     }
-                }
+                }    
             }
         }
     }

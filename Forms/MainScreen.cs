@@ -2,7 +2,6 @@
 using CourseWork_With_SQLite.Context;
 using System.Data;
 using System.Runtime.InteropServices;
-using IronXL;
 using ClosedXML.Excel;
 
 namespace CourseWork_With_SQLite.Forms
@@ -253,6 +252,8 @@ namespace CourseWork_With_SQLite.Forms
         /// </summary>
         private void updateTable()
         {
+            [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+            static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
             try
             {
                 string SemesterDecesion = semesterInput.Text;
@@ -365,11 +366,10 @@ namespace CourseWork_With_SQLite.Forms
                     examTable.Rows[counter].Cells[6].Value = exam.Score;
                     counter++;
                 }
-            }
+            }  
             catch (Exception ex)
             {
-                [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-                static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
+
                 MessageBox(IntPtr.Zero, ex.Message, "Ошибка", 0);
             }
         }
@@ -564,6 +564,9 @@ namespace CourseWork_With_SQLite.Forms
                     counter++;
                 }
 
+                ws.Cell("A" + (counter + 11).ToString()).Value = "Всего записей:";
+                ws.Cell("B" + (counter + 11).ToString()).Value = counter;
+
                 if (PATH != null)
                 {
                     wbook.SaveAs(PATH.ToString());
@@ -573,8 +576,8 @@ namespace CourseWork_With_SQLite.Forms
                 else
                 {
                     var pathToFile = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
-                    var path = Path.Combine(pathToFile, "Отчет по успеваемости" + DateTime.Now.ToString().Split()[0] + " " 
-                        + DateTime.Now.Hour.ToString() + " " + DateTime.Now.Minute.ToString() + "_" 
+                    var path = Path.Combine(pathToFile, "Отчет по успеваемости " + DateTime.Now.ToString().Split()[0] + " " 
+                        + DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" 
                         + DateTime.Now.Second.ToString() + ".xlsx");
                     wbook.SaveAs(path);
                     MessageBox(IntPtr.Zero, "Отчет успешно сохранен на рабочий стол!", "Сообщение", 0);
@@ -596,21 +599,14 @@ namespace CourseWork_With_SQLite.Forms
             string SemesterDecesion = semesterInput.Text;
             string FacultyDecesion = facultyInput.Text;
             string SpecialityDecesion = specialityInput.Text;
-            await Task.Run(() => generateExcel(SemesterDecesion, FacultyDecesion, SpecialityDecesion));
-        }
 
-        /// <summary>
-        /// Метод нажатия на меню выбрать путь сохранения
-        /// </summary>
-        /// <param name="sender">Объект, который вызвал срабатывание</param>
-        /// <param name="e">Объект, с дополнительной информацией</param>
-        private void pathToolStripMenuItem_Click(object sender, EventArgs e)
-        {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Лист Microsoft Excel|*.xlsx";
             saveFileDialog1.Title = "Сохраните Excel файл";
             saveFileDialog1.ShowDialog();
+            
             PATH = @saveFileDialog1.FileName;
+            await Task.Run(() => generateExcel(SemesterDecesion, FacultyDecesion, SpecialityDecesion));
         }
     }
 }

@@ -58,7 +58,6 @@
             this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.exitButton = new System.Windows.Forms.Button();
-            this.pathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.filtersGroupBox.SuspendLayout();
             this.showGroupBox.SuspendLayout();
@@ -82,7 +81,6 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pathToolStripMenuItem,
             this.generateToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 19);
@@ -374,13 +372,6 @@
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // pathToolStripMenuItem
-            // 
-            this.pathToolStripMenuItem.Name = "pathToolStripMenuItem";
-            this.pathToolStripMenuItem.Size = new System.Drawing.Size(318, 22);
-            this.pathToolStripMenuItem.Text = "Задание пути для сохранения";
-            this.pathToolStripMenuItem.Click += new System.EventHandler(this.pathToolStripMenuItem_Click);
-            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
@@ -442,6 +433,5 @@
         private DataGridViewTextBoxColumn Score;
         private ToolStripMenuItem generateToolStripMenuItem;
         private SaveFileDialog saveFileDialog1;
-        private ToolStripMenuItem pathToolStripMenuItem;
     }
 }

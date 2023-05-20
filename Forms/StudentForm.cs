@@ -166,21 +166,25 @@ namespace CourseWork_With_SQLite.Forms
             }
             if (e.ColumnIndex == 6)
             {
-                using (CourseWorkContext context = new CourseWorkContext())
+                DialogResult dialogResult = MessageBox.Show("Удалить выбранную запись?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    Student student = context.Students.FirstOrDefault(el => el.Id.ToString().ToLower() == studentTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
-                    if (student != null)
+                    using (CourseWorkContext context = new CourseWorkContext())
                     {
-                        String studentId = student.Id.ToString();
-                        context.Students.Remove(student);
-                        context.SaveChanges();
-                        foreach (Exam exam in context.Exams.Where(e => e.IdStudent == studentId).ToList())
+                        Student student = context.Students.FirstOrDefault(el => el.Id.ToString().ToLower() == studentTable.Rows[e.RowIndex].Cells[0].Value.ToString().ToLower());
+                        if (student != null)
                         {
-                            context.Exams.Remove(exam);
+                            String studentId = student.Id.ToString();
+                            context.Students.Remove(student);
                             context.SaveChanges();
+                            foreach (Exam exam in context.Exams.Where(e => e.IdStudent == studentId).ToList())
+                            {
+                                context.Exams.Remove(exam);
+                                context.SaveChanges();
+                            }
                         }
+                        updateTable();
                     }
-                    updateTable();
                 }
             }
         }
