@@ -27,6 +27,7 @@ namespace CourseWork_With_SQLite.Forms
         {
             InitializeComponent();
             updateTable();
+            updateSpecialityOptions();
         }
 
         /// <summary>
@@ -132,12 +133,24 @@ namespace CourseWork_With_SQLite.Forms
         /// <param name="e">Объект, с дополнительной информацией</param>
         private void updateVariants(object sender, EventArgs e)
         {
+            updateSpecialityOptions();
+        }
+
+        /// <summary>
+        /// Метож обновления вариантов специальностей
+        /// </summary>
+        private void updateSpecialityOptions()
+        {
             CourseWorkContext context = new CourseWorkContext();
             specialities = context.Specialities.AsEnumerable();
             specialityInput.Items.Clear();
             foreach (Speciality speciality in specialities)
             {
                 specialityInput.Items.Add(speciality.SpecialityCode);
+            }
+            if (specialities.Count() == 1)
+            {
+                specialityInput.SelectedIndex = 0;
             }
         }
 

@@ -114,6 +114,10 @@ namespace CourseWork_With_SQLite.Forms
             {
                 specialityInput.Items.Add(speciality.SpecialityCode);
             }
+            if (specialities.Count() == 1)
+            {
+                specialityInput.SelectedIndex = 0;
+            }
         }
 
         /// <summary>

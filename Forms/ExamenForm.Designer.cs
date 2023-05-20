@@ -123,6 +123,7 @@
             this.specialityInput.Name = "specialityInput";
             this.specialityInput.Size = new System.Drawing.Size(242, 30);
             this.specialityInput.TabIndex = 0;
+            this.specialityInput.SelectedIndexChanged += new System.EventHandler(this.specialityInput_SelectedIndexChanged);
             this.specialityInput.Click += new System.EventHandler(this.specialityInput_Enter);
             this.specialityInput.MouseCaptureChanged += new System.EventHandler(this.specialityInput_Enter);
             // 

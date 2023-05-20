@@ -147,6 +147,10 @@ namespace CourseWork_With_SQLite.Forms
             {
                 facultyInput.Items.Add(fac.Name);
             }
+            if (faculties.Count() == 1)
+            {
+                facultyInput.Text = facultyInput.Items[0].ToString();
+            }
         }
 
         /// <summary>

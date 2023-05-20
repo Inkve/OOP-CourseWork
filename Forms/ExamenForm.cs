@@ -76,12 +76,15 @@ namespace CourseWork_With_SQLite.Forms
             {
                 specialityInput.Items.Add(speciality.SpecialityCode);
             }
-            specialityInput.Text = currentDicision;
-            if (!string.IsNullOrEmpty(currentDicision))
+            if (specialities.Count() == 1)
             {
-                subjectInput.Text = "";
-                updateSubjectOption();
+                specialityInput.SelectedIndex = 0;
             }
+            if (currentDicision != "")
+            {
+                specialityInput.Text = currentDicision;
+            }
+            updateSubjectOption();
         }
 
         /// <summary>
@@ -95,7 +98,10 @@ namespace CourseWork_With_SQLite.Forms
             {
                 semesterInput.Items.Add(i.ToString() + " семестр");
             }
-            semesterInput.Text = currentDicision;
+            if (currentDicision != "")
+            {
+                semesterInput.Text = currentDicision;
+            }
         }
 
         /// <summary>
@@ -116,19 +122,31 @@ namespace CourseWork_With_SQLite.Forms
         {   
             string currentDecision = subjectInput.Text;
             string currentSpecialityDicision = specialityInput.Text;
-            string currentSpecialityId = specialities.Where(c => c.SpecialityCode == currentSpecialityDicision).First().Id.ToString();
-            List<Subject> tempSubject = new List<Subject>();
-            tempSubject = subjects.Where(e => e.SpecialityID.ToLower() == currentSpecialityId.ToLower()).ToList();
-            subjectInput.Items.Clear();
-            foreach (Subject subject in tempSubject)
+            if (currentSpecialityDicision != "")
             {
-                subjectInput.Items.Add(subject.Name);
-            }
-            subjectInput.Text = currentDecision;
-            if (!string.IsNullOrEmpty(currentDecision))
-            {
-                updateSemesterOption();
-                updateStudentOption();
+                string currentSpecialityId = specialities.Where(c => c.SpecialityCode == currentSpecialityDicision).First().Id.ToString();
+                List<Subject> tempSubject = new List<Subject>();
+                tempSubject = subjects.Where(e => e.SpecialityID.ToLower() == currentSpecialityId.ToLower()).ToList();
+                subjectInput.Items.Clear();
+                foreach (Subject subject in tempSubject)
+                {
+                    subjectInput.Items.Add(subject.Name);
+                }
+                if (tempSubject.Count() == 1)
+                {
+                    subjectInput.SelectedIndex = 0;
+                }
+
+                if (currentDecision != "")
+                {
+                    subjectInput.Text = currentDecision;
+                }
+
+                if (!string.IsNullOrEmpty(currentDecision))
+                {
+                    updateSemesterOption();
+                    updateStudentOption();
+                }
             }
         }
 
@@ -151,6 +169,10 @@ namespace CourseWork_With_SQLite.Forms
                 foreach (Student student in studentsForOption)
                 {
                     studentInput.Items.Add(student.ToString());
+                }
+                if (studentsForOption.Count() == 1)
+                {
+                    studentInput.SelectedIndex = 0;
                 }
             }
             else
@@ -319,6 +341,14 @@ namespace CourseWork_With_SQLite.Forms
                     }
                 }
             }
+        }
+
+        private void specialityInput_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            subjectInput.Items.Clear();
+            updateSubjectOption();
+            studentInput.Enabled = false;
+            scoreInput.Enabled = false;
         }
     }
 }
