@@ -599,7 +599,6 @@ namespace CourseWork_With_SQLite.Forms
             string SemesterDecesion = semesterInput.Text;
             string FacultyDecesion = facultyInput.Text;
             string SpecialityDecesion = specialityInput.Text;
-
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Лист Microsoft Excel|*.xlsx";
             saveFileDialog1.Title = "Сохраните Excel файл";
@@ -611,6 +610,11 @@ namespace CourseWork_With_SQLite.Forms
                 PATH = @saveFileDialog1.FileName;
                 await Task.Run(() => generateExcel(SemesterDecesion, FacultyDecesion, SpecialityDecesion));
             }
+        }
+
+        private void filtersGroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

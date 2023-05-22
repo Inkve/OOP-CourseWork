@@ -164,6 +164,7 @@
             this.filtersGroupBox.TabIndex = 1;
             this.filtersGroupBox.TabStop = false;
             this.filtersGroupBox.Text = "Фильтры";
+            this.filtersGroupBox.Enter += new System.EventHandler(this.filtersGroupBox_Enter);
             // 
             // applyButton
             // 
